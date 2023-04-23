@@ -1,21 +1,9 @@
 {
-	"name": "Evey Huang Personal Website",
+	"name": "Evey Huang",
 	"short_name": "eveywhere",
-	"description": "Evey's personal website",
-	"icons": [
-		{
-			"src": "/192x192.png",
-			"sizes": "192x192",
-			"type": "image/png"
-		},
-		{
-			"src": "/512x512.png",
-			"sizes": "512x512",
-			"type": "image/png"
-		}
-	],
+	"description": "",
 	"start_url": "/",
-	"background_color": "#e4e1d8",
-	"theme_color": "#2bbc8a",
+	"background_color": "#f5f4f2",
+	"theme_color": "#45455d",
 	"display": "standalone"
 }
