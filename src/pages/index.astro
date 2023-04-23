@@ -1,26 +1,48 @@
 ---
-import { getCollection } from "astro:content";
+// import { getCollection } from "astro:content";
 import PageLayout from "@/layouts/Base";
-import PostPreview from "@/components/blog/PostPreview";
+// import PostPreview from "@/components/blog/PostPreview";
 import SocialList from "@/components/SocialList";
-import { sortMDByDate } from "@/utils";
+// import { sortMDByDate } from "@/utils";
+import { Image } from "@astrojs/image/components";
 
-const MAX_POSTS = 10;
-const allPosts = await getCollection("post");
-const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+import profileImg from "../assets/evey-profile.png";
+
+
+// const MAX_POSTS = 10;
+// const allPosts = await getCollection("post");
+// const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 ---
 
 <PageLayout meta={{ title: "Home" }}>
-	<section>
-		<h1 class="title mb-6">Hello World!</h1>
-		<p class="mb-4">
-			Hi, I’m a theme for Astro, an example of how you can use this starter to create a personal
-			blog. If you want to know more about how you can customise me, add more posts, and make it
-			your own, click on one the github icon link below which will take you to my repo.
-		</p>
+	<section class="space-y-6">
+		<!-- <h1 class="title mb-6">Evey Huang</h1> -->
+		
+		<div class="flex justify-center">
+			<Image
+				src={profileImg}
+				width={160}
+				loading="eager"
+			/>
+		</div>
+		<div >
+			<p class="mb-4" class="flex justify-right">
+				Hello! My name is Evey (pronounced like the Pokemon). My research interest lies at the intersection of HCI, AI, and education. I use design research methods to design and build mixed-initiative human-AI systems that can support coaching and learning in real-world, ill-defined domains like design education and entrepreneurship. <br><br>
+				
+				I am currently a 4th year PhD student in Technology and Social Behavior (TSB), a joint program between Computer Science and Communication at Northwestern University. I am advised by <a href='https://egerber.mech.northwestern.edu'>Dr. Liz Gerber</a> and <a href='http://matteasterday.com'>Dr. Matt Easterday</a> and a member of the <a href='https://delta.northwestern.edu'>Delta Lab</a>. Prior to grad school, I worked with <a href='https://juhokim.com'>Dr. Juho Kim</a> at <a href='kixlab.org'>Kixlab</a>, KAIST for one year as a research intern. I received my bacholors degree from UC Berkeley where I worked in the <a href='http://www.hybrid-ecologies.org/'>Hybrid Ecologies Lab</a> with Dr. Sarah Sterman and Dr. Eric Paulos. <br> <br>
+
+
+				Outside of research, I spend my free time on photography (both digital and analog), tennis, doodling, music, and cooking. 
+
+				<br><br>  You can contact me at eveyhuang@u.northwestern.edu
+			</p>
+		</div>
+		
 		<SocialList />
 	</section>
-	<section aria-label="Blog post list" class="mt-16">
+
+
+	<!-- <section aria-label="Blog post list" class="mt-16">
 		<h2 class="title mb-4 text-xl">Posts</h2>
 		<ul class="space-y-4 sm:space-y-2">
 			{
@@ -31,74 +53,20 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 				))
 			}
 		</ul>
-	</section>
+	</section> -->
 	<section class="mt-16">
-		<h2 class="title mb-4 text-xl">Technologies</h2>
+		<h2 class="title mb-4 text-xl">News</h2>
 		<ul class="space-y-4 sm:space-y-2">
 			<li>
-				<a
-					href="https://astro.build"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="cactus-link inline-block"
-					>Astro
-				</a>:
-				<p class="inline-block sm:mt-2">Build fast websites, faster.</p>
+				<p class="inline-block sm:mt-2"> <b>Apr 23-28 2023</b> | Hamburg, Germany | I will be attending CHI this week to attend a <u><a href="https://chi2023digitalskillsforthecreativepractitioner.wordpress.com">workshop on supporting learning in informal learning environments</a></u>. </p>
 			</li>
+
 			<li>
-				<a
-					href="https://docs.astro.build/en/guides/integrations-guide/image/"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="cactus-link inline-block"
-					>@astro/image
-				</a>:
-				<p class="inline-block sm:mt-2">
-					An Astro integration for optimising images in Astro projects.
-				</p>
+				<p class="inline-block sm:mt-2"> <b>Oct 22-25 2022 </b>| Evanston, USA | Attended the Lambert Conference on the Future of Human-Computer Interaction + Design and organized a poster session to showcase research from Northwestern community.  </p>
 			</li>
-			<li>
-				<a
-					href="https://tailwindcss.com"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="cactus-link inline-block"
-					>Tailwind CSS
-				</a>:
-				<p class="inline-block sm:mt-2">
-					Rapidly build modern websites without ever leaving your HTML.
-				</p>
-			</li>
-			<li>
-				<a
-					href="https://www.markdownguide.org/"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="cactus-link inline-block"
-					>Markdown
-				</a>:
-				<p class="inline-block sm:mt-2">Simple and easy-to-use markup language.</p>
-			</li>
-			<li>
-				<a
-					href="https://mdxjs.com/"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="cactus-link inline-block"
-					>MDX
-				</a>:
-				<p class="inline-block sm:mt-2">Markdown for the component era.</p>
-			</li>
-			<li>
-				<a
-					href="https://github.com/vercel/satori"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="cactus-link inline-block"
-					>Satori
-				</a>:
-				<p class="inline-block sm:mt-2">Generating png Open Graph images for blog posts</p>
-			</li>
+			
+			
 		</ul>
 	</section>
+	
 </PageLayout>

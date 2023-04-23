@@ -3,20 +3,20 @@ export const MENU_LINKS = [
 		title: "Home",
 		path: "/",
 	},
+	// {
+	// 	title: "About",
+	// 	path: "/about",
+	// },
 	{
-		title: "About",
-		path: "/about",
-	},
-	{
-		title: "Blog",
-		path: "/posts",
+		title: "Publications",
+		path: "/publications",
 	},
 ];
 
 // ! Remember to add your own socials
 export const SOCIAL_LINKS = {
-	github: "https://github.com/chrismwilliams/astro-cactus",
-	twitter: "https://github.com/chrismwilliams/astro-cactus",
-	discord: "https://github.com/chrismwilliams/astro-cactus",
-	email: "me@example.com",
+	twitter: "https://twitter.com/evey_huang",
+	email: "eveyhuang@u.northwestern.edu",
+	linkedin: "https://www.linkedin.com/in/eveyhuang/",
+	behance: "https://www.behance.net/eveywhere",
 };
