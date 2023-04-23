@@ -2,8 +2,12 @@
 import type { SiteMeta } from "@/data/siteMeta";
 import { siteConfig } from "@/site-config";
 import "../styles/global.css";
+import { GoogleAnalytics } from 'astro-google-analytics';
 
 type Props = SiteMeta;
+<head>
+	<GoogleAnalytics id="UA-117256651-1" />
+</head>
 
 const { title, description, ogImage, articleDate } = Astro.props;
 
