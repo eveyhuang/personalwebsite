@@ -1,6 +1,7 @@
 ---
 import ThemeToggle from "../ThemeToggle.astro";
 import { MENU_LINKS } from "@/data/constants";
+import { GoogleAnalytics } from "astro-google-analytics";
 
 const url = new URL(Astro.request.url);
 ---
@@ -21,7 +22,9 @@ const url = new URL(Astro.request.url);
 	});
 </script>
 
-<header id="main-header" class="group relative mb-28 flex items-center">
+<head>
+	<!-- Replace id with your own Google Analytics ID -->
+	<GoogleAnalytics id="G-T1DM6RDZVQ" />
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-T1DM6RDZVQ"></script>
 	<script>
@@ -33,7 +36,8 @@ const url = new URL(Astro.request.url);
 
 		gtag("config", "G-T1DM6RDZVQ");
 	</script>
-
+</head>
+<header id="main-header" class="group relative mb-28 flex items-center">
 	<div class="flex sm:flex-col">
 		<!-- <a
 			href="/"
