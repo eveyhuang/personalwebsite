@@ -1,18 +1,27 @@
 import type { APIContext, GetStaticPathsResult } from "astro";
+import type { SatoriOptions } from "satori";
 import { getCollection, getEntryBySlug } from "astro:content";
-import satori, { SatoriOptions } from "satori";
+import satori from "satori";
 import { html } from "satori-html";
 import { Resvg } from "@resvg/resvg-js";
 import { siteConfig } from "@/site-config";
 import { getFormattedDate } from "@/utils";
 
-const monoFontReg = await fetch(
-	"https://api.fontsource.org/v1/fonts/roboto-mono/latin-400-normal.ttf"
-);
+async function fetchFont(url: string) {
+	try {
+		const response = await fetch(url);
+		if (!response.ok) throw new Error(`Failed to fetch font: ${response.statusText}`);
+		return await response.arrayBuffer();
+	} catch (error) {
+		console.error(`Error fetching font from ${url}:`, error);
+		return null;
+	}
+}
 
-const monoFontBold = await fetch(
-	"https://api.fontsource.org/v1/fonts/roboto-mono/latin-700-normal.ttf"
-);
+const [monoFontReg, monoFontBold] = await Promise.all([
+	fetchFont("https://api.fontsource.org/v1/fonts/roboto-mono/latin-400-normal.ttf"),
+	fetchFont("https://api.fontsource.org/v1/fonts/roboto-mono/latin-700-normal.ttf"),
+]);
 
 const ogOptions: SatoriOptions = {
 	width: 1200,
@@ -22,13 +31,13 @@ const ogOptions: SatoriOptions = {
 	fonts: [
 		{
 			name: "Roboto Mono",
-			data: await monoFontReg.arrayBuffer(),
+			data: monoFontReg || new ArrayBuffer(0),
 			weight: 400,
 			style: "normal",
 		},
 		{
 			name: "Roboto Mono",
-			data: await monoFontBold.arrayBuffer(),
+			data: monoFontBold || new ArrayBuffer(0),
 			weight: 700,
 			style: "normal",
 		},
@@ -82,5 +91,7 @@ export async function get({ params: { slug } }: APIContext) {
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 	const posts = await getCollection("post");
-	return posts.filter(({ data }) => !data.ogImage).map(({ slug }) => ({ params: { slug } }));
+	return posts
+		.filter((post) => !post.data.ogImage)
+		.map((post) => ({ params: { slug: post.slug } }));
 }
