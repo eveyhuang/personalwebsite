@@ -12,10 +12,10 @@
 		"format": "prettier -w --plugin-search-dir=. --cache ."
 	},
 	"devDependencies": {
-		"@astrojs/image": "0.16.6",
-		"@astrojs/mdx": "^0.19.0",
-		"@astrojs/sitemap": "^1.2.2",
-		"@astrojs/tailwind": "3.1.1",
+		"@astrojs/image": "0.18.0",
+		"@astrojs/mdx": "^4.2.6",
+		"@astrojs/sitemap": "^3.4.0",
+		"@astrojs/tailwind": "6.0.2",
 		"@resvg/resvg-js": "^2.4.1",
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@tailwindcss/typography": "^0.5.8",
@@ -42,9 +42,9 @@
 		"typescript": "^5.0.4"
 	},
 	"dependencies": {
-		"@astrojs/prefetch": "^0.2.1",
-		"@astrojs/rss": "^2.3.2",
-		"astro": "2.3.0",
+		"@astrojs/prefetch": "^0.4.1",
+		"@astrojs/rss": "^4.0.11",
+		"astro": "5.7.13",
 		"astro-google-analytics": "^1.0.3",
 		"satori": "0.4.11",
 		"satori-html": "^0.3.2",
