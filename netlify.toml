@@ -5,6 +5,7 @@
 [build.environment]
   NODE_VERSION = "18.17.1"
   NPM_VERSION = "10.2.4"
+  NODE_OPTIONS = "--max_old_space_size=4096"
 
 [build.processing]
   skip_processing = false
@@ -22,3 +23,6 @@
 
 [build.processing.images]
   compress = true
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
