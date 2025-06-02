@@ -3,7 +3,7 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "18.17.1"
+  NODE_VERSION = "18.20.8"
   NPM_VERSION = "10.2.4"
   NODE_OPTIONS = "--max_old_space_size=4096"
 
