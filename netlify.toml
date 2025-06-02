@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "nvm install 20.3.0 && nvm use 20.3.0 && npm install -g pnpm@latest && pnpm install && pnpm run build"
   publish = "dist"
 
 [build.environment]
