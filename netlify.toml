@@ -1,11 +1,12 @@
 [build]
-  command = "nvm install 20.3.0 && nvm use 20.3.0 && npm install -g pnpm@latest && pnpm install && pnpm run build"
+  command = "pnpm install && pnpm run build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20.3.0"
   NPM_VERSION = "10.2.4"
   NODE_OPTIONS = "--max_old_space_size=4096"
+  PNPM_VERSION = "8.15.4"
 
 [build.processing]
   skip_processing = false
