@@ -2,6 +2,8 @@
 import PageLayout from "@/layouts/Base";
 import SocialList from "@/components/SocialList";
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { sortMDByDate } from "@/utils";
 import profileImg from "../assets/evey-profile.png";
 
 const newsItems = [
@@ -35,6 +37,15 @@ const newsItems = [
 		text: "Successfully defended dissertation.",
 	},
 ];
+
+const artImages = ["/1.png", "/2.png", "/3.png"];
+const allPosts = sortMDByDate(await getCollection("post", ({ data }) => !data.draft));
+const projects = allPosts.slice(0, 3).map((post, index) => ({
+	href: `/posts/${post.slug}`,
+	label: "Work",
+	title: post.data.title,
+	image: artImages[index] ?? artImages[0],
+}));
 ---
 
 <PageLayout meta={{ title: "Home", description: "Human-AI collaboration research and engineering portfolio" }}>
@@ -83,22 +94,21 @@ const newsItems = [
 
 	<section class="section-block">
 		<div class="section-head">
-			<h2>Explore</h2>
-			<p class="section-label">Core sections</p>
+			<h2>Projects</h2>
+			<p class="section-label">Selected areas</p>
 		</div>
-		<div class="grid gap-4 md:grid-cols-3">
-			<a class="surface-card block" href="/publications">
-				<p class="meta-text">Publications</p>
-				<h3 class="mt-2 text-xl font-medium">Conference papers, journal work, and workshops</h3>
-			</a>
-			<a class="surface-card block" href="/posts">
-				<p class="meta-text">Work</p>
-				<h3 class="mt-2 text-xl font-medium">Research notes, engineering logs, and multimedia posts</h3>
-			</a>
-			<a class="surface-card block" href="/resume">
-				<p class="meta-text">Resume</p>
-				<h3 class="mt-2 text-xl font-medium">Clean web resume with an embedded downloadable PDF</h3>
-			</a>
+		<div class="projects-grid">
+			{
+				projects.map((project) => (
+					<a class="project-card" href={project.href} aria-label={`${project.title} (${project.label})`}>
+						<div class="project-art">
+							<img class="project-image" src={project.image} alt={`Artwork for ${project.title}`} />
+							<p class="meta-text project-label">{project.label}</p>
+							<h3 class="project-title">{project.title}</h3>
+						</div>
+					</a>
+				))
+			}
 		</div>
 	</section>
 
@@ -177,6 +187,71 @@ const newsItems = [
 		background: #f5f5f3;
 	}
 
+	.projects-grid {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.project-card {
+		display: block;
+		padding: 0.25rem;
+		border-radius: 16px;
+		background: transparent;
+		border: 1px solid transparent;
+		transition: transform 220ms ease, border-color 220ms ease;
+	}
+
+	.project-card:hover {
+		transform: translateY(-2px);
+		border-color: var(--theme-line);
+	}
+
+	.project-art {
+		position: relative;
+		height: 240px;
+		border-radius: 12px;
+		background: var(--theme-bg);
+		overflow: hidden;
+	}
+
+	.project-image {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: saturate(0.9) contrast(1.01) brightness(0.97);
+		mix-blend-mode: multiply;
+		opacity: 0.98;
+		background: var(--theme-bg);
+	}
+
+	.project-label {
+		position: absolute;
+		left: 1rem;
+		top: 1rem;
+		color: var(--theme-accent-2);
+		opacity: 0.9;
+		z-index: 2;
+	}
+
+	.project-title {
+		position: absolute;
+		left: 1rem;
+		right: 1rem;
+		top: 2.7rem;
+		margin: 0;
+		font-size: 1.25rem;
+		line-height: 1.1;
+		font-weight: 600;
+		letter-spacing: -0.015em;
+		color: var(--theme-accent-2);
+		text-wrap: balance;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+		z-index: 2;
+	}
+
 	@media (max-width: 1023px) {
 		.hero-frame {
 			min-height: 230px;
@@ -189,6 +264,14 @@ const newsItems = [
 		.hero-portrait {
 			margin-left: 0;
 			width: clamp(170px, 34vw, 260px);
+		}
+
+		.projects-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.project-art {
+			height: 220px;
 		}
 	}
 </style>
