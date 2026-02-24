@@ -1,0 +1,118 @@
+---
+import PageLayout from "@/layouts/Base";
+
+const resumePdfPath = "/resume/evey-huang-cv.pdf";
+
+const experience = [
+	{
+		role: "Postdoctoral Research Fellow",
+		org: "Kellogg School of Management & NICO, Northwestern University",
+		period: "2025 - Present",
+		summary:
+			"Researching multimodal AI systems for scientific collaboration and high-impact teamwork.",
+	},
+	{
+		role: "PhD Researcher",
+		org: "Technology and Social Behavior, Northwestern University",
+		period: "2019 - 2024",
+		summary:
+			"Designed and evaluated proactive human-AI coaching systems for learning and entrepreneurship contexts.",
+	},
+];
+
+const education = [
+	{
+		degree: "PhD, Technology and Social Behavior",
+		school: "Northwestern University",
+		year: "2024",
+	},
+	{
+		degree: "BS/MS studies in HCI and Computing",
+		school: "Relevant interdisciplinary training",
+		year: "Earlier",
+	},
+];
+
+const highlights = [
+	"Human-AI collaboration",
+	"Design research",
+	"Computational social science",
+	"Multimodal behavior analysis",
+	"Applied AI prototyping",
+];
+
+const meta = {
+	title: "Resume",
+	description: "Resume and CV in web format with embedded PDF",
+};
+---
+
+<PageLayout meta={meta}>
+	<section>
+		<div class="section-head">
+			<h1>Resume / CV</h1>
+			<p class="section-label">Web + PDF</p>
+		</div>
+		<p class="max-w-3xl text-[1.02rem] text-muted">
+			A clean web-first resume for quick scanning, plus an embedded PDF for full-print fidelity.
+			Replace <code>{resumePdfPath}</code> with your latest CV file when needed.
+		</p>
+	</section>
+
+	<section class="section-block grid gap-4 lg:grid-cols-[1.05fr_1fr]">
+		<article class="surface-card">
+			<h2 class="text-2xl font-semibold text-accent-2">Experience</h2>
+			<ul class="mt-5 space-y-5">
+				{
+					experience.map((item) => (
+						<li class="border-t border-dashed border-line pt-4">
+							<p class="meta-text">{item.period}</p>
+							<h3 class="mt-1 text-lg font-medium">{item.role}</h3>
+							<p class="text-sm text-muted">{item.org}</p>
+							<p class="mt-2 text-sm">{item.summary}</p>
+						</li>
+					))
+				}
+			</ul>
+
+			<h2 class="mt-8 text-2xl font-semibold text-accent-2">Education</h2>
+			<ul class="mt-4 space-y-4">
+				{
+					education.map((item) => (
+						<li class="border-t border-dashed border-line pt-3">
+							<p class="meta-text">{item.year}</p>
+							<h3 class="mt-1 text-lg font-medium">{item.degree}</h3>
+							<p class="text-sm text-muted">{item.school}</p>
+						</li>
+					))
+				}
+			</ul>
+
+			<h2 class="mt-8 text-2xl font-semibold text-accent-2">Focus Areas</h2>
+			<div class="mt-3 flex flex-wrap gap-2">
+				{highlights.map((item) => <span class="button-pill">{item}</span>)}
+			</div>
+		</article>
+
+		<article class="surface-card overflow-hidden p-0">
+			<div class="flex items-center justify-between border-b border-line bg-[#ebece7] px-4 py-3">
+				<p class="meta-text">Embedded PDF preview</p>
+				<a class="button-pill" href={resumePdfPath} target="_blank" rel="noopener noreferrer">
+					Download
+				</a>
+			</div>
+			<object
+				data={resumePdfPath}
+				type="application/pdf"
+				class="h-[640px] w-full bg-white"
+			>
+				<p class="p-4 text-sm text-muted">
+					Unable to display the PDF in-browser.
+					<a class="cactus-link" href={resumePdfPath} target="_blank" rel="noopener noreferrer">
+						Open the PDF directly
+					</a>.
+				</p>
+			</object>
+		</article>
+	</section>
+</PageLayout>

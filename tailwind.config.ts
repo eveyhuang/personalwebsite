@@ -6,9 +6,7 @@ export default {
 	content: ["./src/**/*.{astro,html,js,jsx,md,svelte,ts,tsx,vue}"],
 	darkMode: "class",
 	corePlugins: {
-		// disable aspect ratio as per docs -> @tailwindcss/aspect-ratio
 		aspectRatio: false,
-		// disable some core plugins as they are included in the css, even when unused
 		touchAction: false,
 		ringOffsetWidth: false,
 		ringOffsetColor: false,
@@ -21,74 +19,60 @@ export default {
 		extend: {
 			colors: {
 				bgColor: "var(--theme-bg)",
+				surface: "var(--theme-surface)",
 				textColor: "var(--theme-text)",
+				muted: "var(--theme-text-muted)",
 				link: "var(--theme-link)",
 				accent: "var(--theme-accent)",
 				"accent-2": "var(--theme-accent-2)",
+				line: "var(--theme-line)",
 			},
 			fontFamily: {
-				// Add any custom fonts here
-				sans: [...fontFamily.sans],
-				serif: [...fontFamily.serif],
+				sans: ["Space Grotesk", ...fontFamily.sans],
+				serif: ["Newsreader", ...fontFamily.serif],
 			},
 			transitionProperty: {
 				height: "height",
 			},
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			// Remove above once tailwindcss exposes theme type
+			// @ts-ignore Tailwind exposes theme values at runtime.
 			typography: (theme) => ({
-				cactus: {
+				editorial: {
 					css: {
 						"--tw-prose-body": "var(--theme-text)",
 						"--tw-prose-headings": "var(--theme-accent-2)",
-						"--tw-prose-links": "var(--theme-text)",
-						"--tw-prose-bold": "var(--theme-text)",
-						"--tw-prose-bullets": "var(--theme-text)",
-						"--tw-prose-quotes": "var(--theme-quote)",
-						"--tw-prose-code": "var(--theme-text)",
-						"--tw-prose-hr": "0.5px dashed #666",
-						"--tw-prose-th-borders": "#666",
-					},
-				},
-				DEFAULT: {
-					css: {
+						"--tw-prose-links": "var(--theme-link)",
+						"--tw-prose-bold": "var(--theme-accent-2)",
+						"--tw-prose-code": "var(--theme-accent-2)",
+						"--tw-prose-bullets": "var(--theme-accent-2)",
+						"--tw-prose-hr": "var(--theme-line)",
+						maxWidth: "none",
+						fontSize: theme("fontSize.base")[0],
+						lineHeight: "1.75",
 						a: {
-							"@apply cactus-link no-underline": "",
+							fontWeight: "500",
+							textDecoration: "none",
+							borderBottom: "1px solid var(--theme-line-strong)",
 						},
-						strong: {
-							fontWeight: "700",
+						h2: {
+							fontWeight: "600",
+							letterSpacing: "-0.02em",
+						},
+						h3: {
+							fontWeight: "600",
+							letterSpacing: "-0.015em",
 						},
 						code: {
-							border: "1px dotted #666",
-							borderRadius: "2px",
+							border: "1px solid var(--theme-line)",
+							borderRadius: "0.375rem",
+							padding: "0.15rem 0.35rem",
 						},
+						"code::before": { content: "none" },
+						"code::after": { content: "none" },
 						blockquote: {
-							borderLeftWidth: "none",
-						},
-						hr: {
-							borderTopStyle: "dashed",
-						},
-						thead: {
-							borderBottomWidth: "none",
-						},
-						"thead th": {
-							fontWeight: "700",
-							borderBottom: "1px dashed #666",
-						},
-						"tbody tr": {
-							borderBottomWidth: "none",
-						},
-						tfoot: {
-							borderTop: "1px dashed #666",
-						},
-					},
-				},
-				sm: {
-					css: {
-						code: {
-							fontSize: theme("fontSize.sm")[0],
-							fontWeight: "400",
+							fontStyle: "normal",
+							borderInlineStart: "2px solid var(--theme-line-strong)",
+							paddingInlineStart: "1rem",
 						},
 					},
 				},
@@ -100,17 +84,8 @@ export default {
 		require("@tailwindcss/aspect-ratio"),
 		plugin(function ({ addComponents }) {
 			addComponents({
-				".cactus-link": {
-					"@apply bg-[size:100%_6px] bg-bottom bg-repeat-x": {},
-					backgroundImage:
-						"linear-gradient(transparent,transparent 5px,var(--theme-text) 5px,var(--theme-text))",
-					"&:hover": {
-						backgroundImage:
-							"linear-gradient(transparent,transparent 4px,var(--theme-link) 4px,var(--theme-link))",
-					},
-				},
 				".title": {
-					"@apply text-2xl font-semibold text-accent-2": {},
+					"@apply text-3xl font-semibold text-accent-2": {},
 				},
 			});
 		}),

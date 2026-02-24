@@ -1,106 +1,194 @@
 ---
-// import { getCollection } from "astro:content";
 import PageLayout from "@/layouts/Base";
-// import PostPreview from "@/components/blog/PostPreview";
 import SocialList from "@/components/SocialList";
-// import { sortMDByDate } from "@/utils";
-import { Image } from "@astrojs/image/components";
-
+import { Image } from "astro:assets";
 import profileImg from "../assets/evey-profile.png";
 
-
-// const MAX_POSTS = 10;
-// const allPosts = await getCollection("post");
-// const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+const newsItems = [
+	{
+		date: "Oct 18-22, 2025",
+		location: "Bergen, Norway",
+		text: "Attending CSCW 2025 to present AI That Helps Us Help Each Other.",
+		link: "https://arxiv.org/abs/2508.11052",
+		linkLabel: "Paper",
+	},
+	{
+		date: "May 12, 2025",
+		location: "Evanston, USA",
+		text: "Talked at Northwestern CBIT about proactive human-AI collaboration.",
+	},
+	{
+		date: "Apr 2, 2025",
+		location: "Evanston, USA",
+		text: "Presented work at Microsoft AI & Society research seminar.",
+	},
+	{
+		date: "Feb 5, 2025",
+		location: "Evanston, USA",
+		text: "Started as a postdoctoral fellow at NICO with Prof. Brian Uzzi.",
+		link: "https://www.kellogg.northwestern.edu/faculty/directory/uzzi_brian/",
+		linkLabel: "Lab",
+	},
+	{
+		date: "Nov 11, 2024",
+		location: "Evanston, USA",
+		text: "Successfully defended dissertation.",
+	},
+];
 ---
 
-<PageLayout meta={{ title: "Home" }}>
-	<section class="space-y-6">
-		<!-- <h1 class="title mb-6">Evey Huang</h1> -->
-		
-		<div class="flex justify-center">
-			<Image
-				src={profileImg}
-				width={180}
-				loading="eager"
-			/>
-		</div>
-		<div >
-			<p class="mb-4" class="flex justify-right">
-				Hi! I'm Evey (yes, like the Pokémon). I'm currently a postdoctoral research fellow at Kellogg School of Management and the Northwestern Institute on Complex Systems (NICO), working with Prof. <a href='https://www.kellogg.northwestern.edu/faculty/directory/uzzi_brian/'><u>Brian Uzzi</u></a>.
-
-				<br><br>
-				My research sits at the intersection of human-AI collaboration, design research, and computational social science. I design, build, and study human-AI systems that help people learn, reflect, and collaborate more effectively—especially in complex, real-world domains like entrepreneurship, scientific discovery, and innovation. I earned my Ph.D. from the Technology and Social Behavior program, a joint degree in Computer Science and Communication at Northwestern, where I was fortunate to be advised by <a href='https://egerber.mech.northwestern.edu'><u>Prof. Liz Gerber</u></a> and <a href='http://matteasterday.com'><u>Prof. Matt Easterday</u></a> .
-				
-				<br><br>
-				Right now, I'm exploring how we can use multimodal AI to understand team dynamics and behaviors that lead to high-impact science, and investigating how AI is reshaping how scientists work, collaborate, and generate knowledge.
-
-				<br><br>
-				When I'm not doing research, you'll probably find me behind a camera (digital or film), on a tennis court, reading, doodling, cooking spicy food, or hanging out with my chubby cat, Jumi.
-				<br><br>  You can contact me at evey.huang@kellogg.northwestern.edu
+<PageLayout meta={{ title: "Home", description: "Human-AI collaboration research and engineering portfolio" }}>
+	<section class="grid gap-10 lg:grid-cols-[1.35fr_1fr]">
+		<div>
+			<h1 class="display-title">hi.</h1>
+			<p class="mt-8 serif-note">
+				I am a postdoctoral research fellow at Kellogg School of Management and the Northwestern
+				Institute on Complex Systems (NICO), studying how human-AI systems can better support
+				learning, reflection, and collaboration in complex work.
 			</p>
 		</div>
-		
-		<SocialList />
+		<div class="hero-frame">
+			<div class="hero-frame-content">
+				<Image
+					src={profileImg}
+					width={340}
+					alt="Portrait of Evey Huang"
+					class="hero-portrait"
+				/>
+				<p class="meta-text">Designer, Researcher, Engineer.</p>
+				<p class="mt-2 text-3xl font-medium tracking-tight text-accent-2">Evey Huang, PhD.</p>
+			</div>
+		</div>
 	</section>
 
+	<section class="section-block">
+		<div class="max-w-4xl space-y-5">
+			<p>
+				My research sits at the intersection of human-AI collaboration, design research, and
+				computational social science. I design and build systems that help people collaborate more
+				effectively in entrepreneurship, scientific discovery, and innovation.
+			</p>
+			<p>
+				I earned my PhD from the Technology and Social Behavior program at Northwestern
+				University, advised by Prof. Liz Gerber and Prof. Matt Easterday. Right now, I am exploring
+				how multimodal AI can help reveal team dynamics and improve high-impact science.
+			</p>
+			<p>
+				Outside research: film and digital photography, tennis, reading, doodling, and cooking spicy
+				food. Contact: <a class="cactus-link" href="mailto:evey.huang@kellogg.northwestern.edu">evey.huang@kellogg.northwestern.edu</a>
+			</p>
+			<SocialList />
+		</div>
+	</section>
 
-	<!-- <section aria-label="Blog post list" class="mt-16">
-		<h2 class="title mb-4 text-xl">Posts</h2>
-		<ul class="space-y-4 sm:space-y-2">
+	<section class="section-block">
+		<div class="section-head">
+			<h2>Explore</h2>
+			<p class="section-label">Core sections</p>
+		</div>
+		<div class="grid gap-4 md:grid-cols-3">
+			<a class="surface-card block" href="/publications">
+				<p class="meta-text">Publications</p>
+				<h3 class="mt-2 text-xl font-medium">Conference papers, journal work, and workshops</h3>
+			</a>
+			<a class="surface-card block" href="/posts">
+				<p class="meta-text">Work</p>
+				<h3 class="mt-2 text-xl font-medium">Research notes, engineering logs, and multimedia posts</h3>
+			</a>
+			<a class="surface-card block" href="/resume">
+				<p class="meta-text">Resume</p>
+				<h3 class="mt-2 text-xl font-medium">Clean web resume with an embedded downloadable PDF</h3>
+			</a>
+		</div>
+	</section>
+
+	<section class="section-block">
+		<div class="section-head">
+			<h2>News</h2>
+			<p class="section-label">Recent updates</p>
+		</div>
+		<ul class="news-list">
 			{
-				allPostsByDate.map((p) => (
-					<li class="flex flex-col gap-x-2 sm:flex-row">
-						<PostPreview post={p} />
+				newsItems.map((item) => (
+					<li>
+						<p class="meta-text">{item.date} · {item.location}</p>
+						<p class="mt-1 text-[0.98rem]">
+							{item.text}
+							{item.link && (
+								<>
+									{" "}
+									<a class="cactus-link" href={item.link} target="_blank" rel="noopener noreferrer">
+										{item.linkLabel}
+									</a>
+								</>
+							)}
+						</p>
 					</li>
 				))
 			}
 		</ul>
-	</section> -->
-	<section class="mt-16">
-		<h2 class="title mb-4 text-xl">News</h2>
-		<ul class="space-y-4 sm:space-y-2">
-			
-			
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Oct 18-22, 2025</b> | Bergen, Norway | I will be attending CSCW 2025 to present our paper <a href="https://arxiv.org/abs/2508.11052"><u>AI That Helps Us Help Each Other</u></a>. Would love to meet and connect if you will be there as well.  </p>
-			</li>
-
-
-			<li>
-				<p class="inline-block sm:mt-2"> <b>May 12, 2025</b> | Evanston, USA | Gave a talk at Northwestern Center for Behavior Intervention Technologies (CBIT) on our work on proactive human-AI collaboration. </p>
-			</li>
-
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Apr 02, 2025</b> | Evanston, USA | Gave a talk at Microsoft AI & Society research seminar on our work on proactive AI that helps us help each other. </p>
-			</li>
-
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Feb 05, 2025</b> | Evanston, USA | First day as a postdoc at NICO, working with Prof. <a href='https://www.kellogg.northwestern.edu/faculty/directory/uzzi_brian/'><u>Brian Uzzi</u></a>!</p>
-			</li>
-
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Nov 11, 2024</b> | Evanston, USA | I have successfully defended my dissertation! Now I am Dr. Evey :) </p>
-			</li>
-
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Jul 1-5 2024</b> | Copenhagen, Denmark | Presenting <u><a href='https://dl.acm.org/doi/abs/10.1145/3643834.3661623'><u>our paper that own honorable mention</u></a></u> at DIS2024</p>
-			</li>
-
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Oct 14-18 2023</b> | Minneapolis, USA | Presenting <u><a href='https://doi.org/10.1145/3579614'><u>our paper on Intelligent Coaching Systems</u></a></u> at CSCW2023</p>
-			</li>
-			
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Apr 23-28 2023</b> | Hamburg, Germany | I will be attending CHI this week to attend a <u><a href="https://chi2023digitalskillsforthecreativepractitioner.wordpress.com"><u>workshop on supporting learning in informal learning environments</u></a></u>. </p>
-			</li>
-
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Oct 22-25 2022 </b>| Evanston, USA | Attended the Lambert Conference on the Future of Human-Computer Interaction + Design and organized a poster session to showcase research from Northwestern community.  </p>
-			</li>
-			
-			
-		</ul>
 	</section>
-	
 </PageLayout>
+
+<style>
+	.hero-frame {
+		position: relative;
+		display: grid;
+		place-items: end;
+		min-height: 340px;
+	}
+
+	.hero-frame::before {
+		content: "";
+		position: absolute;
+		left: 10%;
+		top: 0;
+		height: 100%;
+		width: 1px;
+		background: var(--theme-line-strong);
+	}
+
+	.hero-frame::after {
+		content: "";
+		position: absolute;
+		right: 0;
+		bottom: 36%;
+		width: 82%;
+		height: 1px;
+		background: var(--theme-line-strong);
+	}
+
+	.hero-frame-content {
+		position: relative;
+		padding-left: 1.25rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.hero-portrait {
+		width: clamp(160px, 22vw, 280px);
+		aspect-ratio: 1 / 1;
+		object-fit: cover;
+		border-radius: 9999px;
+		border: 1px solid var(--theme-line);
+		margin-left: -2.6rem;
+		margin-bottom: 1.1rem;
+		position: relative;
+		z-index: 2;
+		background: #f5f5f3;
+	}
+
+	@media (max-width: 1023px) {
+		.hero-frame {
+			min-height: 230px;
+		}
+
+		.hero-frame::before {
+			left: 0;
+		}
+
+		.hero-portrait {
+			margin-left: 0;
+			width: clamp(170px, 34vw, 260px);
+		}
+	}
+</style>
