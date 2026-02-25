@@ -18,12 +18,12 @@ const meta = {
 			<h1>Tags</h1>
 			<p class="section-label">All categories</p>
 		</div>
-		<ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+		<ul class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
 			{
 				Object.entries(allTags).map(([tag, val]) => (
 					<li>
 						<a
-							class="surface-card block"
+							class="surface-panel block"
 							href={`/tags/${tag}`}
 							title={`View posts with the tag: ${tag}`}
 							rel="prefetch"

@@ -52,12 +52,12 @@ const conferenceAndJournalPapers = [
 
 const workshopsAndPresentations = [
 	{
-		title: "Designing Technology to Support Coaching in Informal Learning Environments",
-		authors: "Evey Huang, Daniel Rees Lewis, Matthew Easterday, Elizabeth Gerber",
-		venue: "CHI '23 workshop on Digital Skills for the Creative Practitioner",
-		year: "2023",
-		link: "https://chi2023digitalskillsforthecreativepractitioner.files.wordpress.com/2023/04/chi23_informal_learning.pdf",
+		title: "Evaluating Multimodal Language Models for Annotating Team Behaviors in Videos",
+		authors: "Evey Huang, Matt Groh, Danny Abrams, Brian Uzzi",
+		venue: "11th International Conference on Computational Social Science (IC2S2 ‘2025)",
+		year: "2025",
 	},
+
 	{
 		title: "Designing Intelligent Coaching Systems to Support Equitable Engagement in Making",
 		authors: "Evey Huang, Matthew Easterday, Elizabeth Gerber",
@@ -92,11 +92,10 @@ const meta = {
 	<section>
 		<div class="section-head">
 			<h1>Publications</h1>
-			<p class="section-label">Research output</p>
+			<p class="section-label">Research Output</p>
 		</div>
 		<p class="max-w-3xl text-[1.03rem] text-muted">
-			Selected papers and presentations across human-AI collaboration, intelligent coaching systems,
-			and computational social science.
+			Selected papers and presentations acros HCI, human-AI collaboration, and computational social science.
 		</p>
 	</section>
 
@@ -105,30 +104,26 @@ const meta = {
 			<h2>Conference & Journal Papers</h2>
 			<p class="section-label">Peer-reviewed</p>
 		</div>
-		<div class="space-y-3">
+		<ul class="space-y-5">
 			{
 				conferenceAndJournalPapers.map((paper, index) => (
-					<article class="surface-card">
-						<p class="meta-text">{String(index + 1).padStart(2, "0")} · {paper.year}</p>
-						<h3 class="mt-2 text-xl font-medium">{paper.title}</h3>
-						<p class="mt-2 text-sm text-muted">{paper.authors}</p>
-						<p class="text-sm text-muted">{paper.venue}</p>
+					<li class="border-t border-dashed border-line pt-4">
+						<p>
+							[{index + 1}] <strong>{paper.title}</strong>
+						</p>
+						<p class="text-sm text-muted">{paper.authors}</p>
+						<p class="text-sm text-muted">{paper.year}. {paper.venue}</p>
 						{
 							paper.link && (
-								<a
-									class="mt-3 inline-flex cactus-link text-sm"
-									href={paper.link}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
+								<a class="cactus-link text-sm" href={paper.link} target="_blank" rel="noopener noreferrer">
 									View publication
 								</a>
 							)
 						}
-					</article>
+					</li>
 				))
 			}
-		</div>
+		</ul>
 	</section>
 
 	<section class="section-block">
@@ -136,30 +131,26 @@ const meta = {
 			<h2>Workshop & Conference Presentations</h2>
 			<p class="section-label">Invited and workshop</p>
 		</div>
-		<div class="space-y-3">
+		<ul class="space-y-5">
 			{
 				workshopsAndPresentations.map((paper, index) => (
-					<article class="surface-card">
-						<p class="meta-text">{String(index + 1).padStart(2, "0")} · {paper.year}</p>
-						<h3 class="mt-2 text-xl font-medium">{paper.title}</h3>
-						<p class="mt-2 text-sm text-muted">{paper.authors}</p>
-						<p class="text-sm text-muted">{paper.venue}</p>
+					<li class="border-t border-dashed border-line pt-4">
+						<p>
+							[{index + 1}] <strong>{paper.title}</strong>
+						</p>
+						<p class="text-sm text-muted">{paper.authors}</p>
+						<p class="text-sm text-muted">{paper.year}. {paper.venue}</p>
 						{
 							paper.link && (
-								<a
-									class="mt-3 inline-flex cactus-link text-sm"
-									href={paper.link}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
+								<a class="cactus-link text-sm" href={paper.link} target="_blank" rel="noopener noreferrer">
 									View material
 								</a>
 							)
 						}
-					</article>
+					</li>
 				))
 			}
-		</div>
+		</ul>
 	</section>
 
 	<section class="section-block">
@@ -167,19 +158,22 @@ const meta = {
 			<h2>Dissertation</h2>
 			<p class="section-label">Doctoral work</p>
 		</div>
-		<article class="surface-card">
-			<p class="meta-text">{dissertation.year}</p>
-			<h3 class="mt-2 text-xl font-medium">{dissertation.title}</h3>
-			<p class="mt-2 text-sm text-muted">{dissertation.authors}</p>
-			<p class="text-sm text-muted">{dissertation.venue}</p>
-			<a
-				class="mt-3 inline-flex cactus-link text-sm"
-				href={dissertation.link}
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				View dissertation
-			</a>
-		</article>
+		<ul class="space-y-5">
+			<li class="border-t border-dashed border-line pt-4">
+				<p>
+					[1] <strong>{dissertation.title}</strong>
+				</p>
+				<p class="text-sm text-muted">{dissertation.authors}</p>
+				<p class="text-sm text-muted">{dissertation.year}. {dissertation.venue}</p>
+				<a
+					class="cactus-link text-sm"
+					href={dissertation.link}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					View dissertation
+				</a>
+			</li>
+		</ul>
 	</section>
 </PageLayout>

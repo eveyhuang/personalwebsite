@@ -1,5 +1,5 @@
 ---
-title: "Can AI Becomes a Thinking Partner For Entrepreneurs and Coaches?"
+title: "Can AI Become a Thinking Partner For Entrepreneurs and Coaches?"
 description: "A human-AI coaching system from an entrepreneurship incubator that helps founders think deeper and helps mentors prepare through adaptive questions, risk diagnosis, and tailored guidance."
 publishDate: "11 Nov 2024"
 featured: true

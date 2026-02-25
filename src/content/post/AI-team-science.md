@@ -1,10 +1,10 @@
 ---
-title: "Can Multimodal AI Decode How Real-World Teams Collaborate?"
+title: "Can Multimodal AI Decode and Support How Real-World Teams Collaborate?"
 description: "We use multimodal AI to decode how teams actually collaborate — moving organizations from gut feelings and annual surveys to real-time, evidence-based insights about what makes teams succeed or fail."
 publishDate: "25 Feb 2025"
 featured: true
 coverImage: "/2-ai-team.png"
-tags: ["Multimodal AI", "Team Science"]
+tags: ["Multimodal AI", "Team Science", "Evaluation Framework"]
 ---
 Every organization talks about psychological safety and open collaboration. Almost none can tell you whether those values actually show up in Monday's meeting.
 
@@ -22,7 +22,7 @@ We recognized this as both a scientific bottleneck and a design opportunity.
 
 **The technical pipeline** is grounded in organizational theory. We synthesized decades of team science research to create a behavior coding framework and designed prompts around these validated constructs: transactive memory, shared mental models, Tuckman's team development stages etc. so the AI extracts features that map onto decades of team science, not just surface-level sentiment.
 
-**Rigor and responsibility by design**: AI annotations are benchmarked against expert human coders with systematic audits. Privacy protection is built into the pipeline from the start: data is processed under strict access controls and behavioral insights are reported at the team level rather than targeting individuals.
+**Rigor and responsibility by design**: We designed thorough and comprehensive evalutaion pipeline to assess and improve AI annotations. They are benchmarked against expert human coders with systematic audits. Privacy protection is built into the pipeline from the start: data is processed under strict access controls and behavioral insights are reported at the team level rather than targeting individuals.
 
 **What it reveals**: Early results show that specific behavioral patterns (like how often teams ask clarifying questions, or how quickly they recover after disagreement) predict outcomes weeks later with meaningful accuracy. The goal is an early-warning system: flag a team showing fragmentation signals before a missed deadline, not after.
 

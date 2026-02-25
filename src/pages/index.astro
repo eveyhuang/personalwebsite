@@ -8,11 +8,21 @@ import profileImg from "../assets/evey-profile.png";
 
 const newsItems = [
 	{
+		date: "Feb 11, 2026",
+		location: "Evanston, USA",
+		text: "Our grant proposal on using Multimodal LLMs for surfacing team collaboration in real time won the finalist (top 10% out of 250+ proposals from the world) of the AI for Organizations Grand Challenge organized by Google Deepmind and Stanford HAI.",
+		
+	},
+	{
 		date: "Oct 18-22, 2025",
 		location: "Bergen, Norway",
-		text: "Attending CSCW 2025 to present AI That Helps Us Help Each Other.",
-		link: "https://arxiv.org/abs/2508.11052",
-		linkLabel: "Paper",
+		text: "Attending CSCW 2025 to present my paper: 'AI That Helps Us Help Each Other: A Proactive System for Scaffolding Mentor-Novice Collaboration in Entrepreneurship Coaching'.",
+		
+	},
+	{
+		date: "Jul 22-24, 2025",
+		location: "Linkoping, Sweden",
+		text: "Attending IC2S2 2025 to present our work on applying multimodal AI to decode team interactions for real life-science teams.",
 	},
 	{
 		date: "May 12, 2025",
@@ -22,14 +32,12 @@ const newsItems = [
 	{
 		date: "Apr 2, 2025",
 		location: "Evanston, USA",
-		text: "Presented work at Microsoft AI & Society research seminar.",
+		text: "Presented my work on proactive human-AI collaboration at Microsoft AI & Society research seminar.",
 	},
 	{
 		date: "Feb 5, 2025",
 		location: "Evanston, USA",
 		text: "Started as a postdoctoral fellow at NICO with Prof. Brian Uzzi.",
-		link: "https://www.kellogg.northwestern.edu/faculty/directory/uzzi_brian/",
-		linkLabel: "Lab",
 	},
 	{
 		date: "Nov 11, 2024",
@@ -62,8 +70,10 @@ const projects = selectedPosts.slice(0, 3).map((post, index) => ({
 		<div>
 			<h1 class="display-title">hi.</h1>
 			<p class="mt-8 serif-note">
-				My name is Evey. I have been designing, researching, and building AI technologies that collaborate with humans to tackle challenges in real-world, complex domains like science, innovation, and business. 
-				I incorporate design research and computational social science methods to understand people's needs and behaviors, and build generative or agentic AI systems to support them.
+				My name is Evey. I have been designing, researching, and building AI technologies that collaborate 
+				with humans to tackle challenges in real-world, complex domains like science, innovation, and business. 
+				I incorporate design research and computational social science methods to understand people's needs and 
+				behaviors, build generative or agentic AI systems to support them, and evaluate these technologies in real-world settings for impact.
 			</p>
 		</div>
 		<div class="hero-frame">
@@ -75,7 +85,7 @@ const projects = selectedPosts.slice(0, 3).map((post, index) => ({
 					class="hero-portrait"
 				/>
 				<p class="meta-text">Designer, Researcher, Engineer.</p>
-				<p class="mt-2 text-3xl font-medium tracking-tight text-accent-2">Evey Huang, PhD.</p>
+				<p class="mt-2 text-3xl font-medium tracking-tight hero-name">Evey Huang, PhD.</p>
 			</div>
 		</div>
 	</section>
@@ -84,20 +94,27 @@ const projects = selectedPosts.slice(0, 3).map((post, index) => ({
 		<div class="max-w-4xl space-y-5">
 			<p>
 				Currently, I am a postdoctoral researcher at Kellogg School of Management and the Northwestern
-				Institute on Complex Systems (NICO), studying how human-AI systems can better support
-				learning, reflection, and collaboration in complex work. My research sits at the intersection of human-AI collaboration, design research, and
-				computational social science. I design and build systems that help people collaborate more
-				effectively in entrepreneurship, scientific discovery, and innovation.
+				Institute on Complex Systems (NICO), working on few strings of research: 
+				(1) building and evaluating multimodal AI pipelines to decode real-world team dynamics in life sciences and business domains. 
+				(2) investigating AI's capabilities and limitations in producing novel and impactful research.
+				(3) developing a rigorous evalutaion framework for using AI in scientific discovery.
+			</p>
+			<p>	
+				I earned my PhD from the Technology and Social Behavior program (joint degree between Computer Science and Communication Studies) 
+				at Northwestern University, where I worked with an innovation incubator on desigining and building proactive AI systems that serve as a thinking partner for 
+				tackling real-world challenges. During my PhD, I also coached extensively undergraduate engineering students
+				on human-centered design and engineering practices. 
 			</p>
 			<p>
-				I earned my PhD from the Technology and Social Behavior program at Northwestern
-				University, advised by Prof. Liz Gerber and Prof. Matt Easterday. Right now, I am exploring
-				how multimodal AI can help reveal team dynamics and improve high-impact science.
+				Besides academic research, I am also invovled with two separate startups as an AI technical advisor and engineer.
+				I am designing and building agentic AI systems for (1) personalized learning in K-12 classrooms and (2) team-level collaboration in complex business workflows. 	
 			</p>
 			<p>
-				Outside research: film and digital photography, tennis, reading, doodling, and cooking spicy
-				food. Contact: <a class="cactus-link" href="mailto:evey.huang@kellogg.northwestern.edu">evey.huang@kellogg.northwestern.edu</a>
+				Outside of work, you most likely will find me playing guitar, doing film and digital photography, playing tennis, reading, doodling, and cooking spicy food. 
 			</p>
+
+			<p> If you also have been poundering on similar questions, and suspect that the improvements of foundational models 
+				alone won't be enough to tackle real-world challenges, let's chat!</p>
 			<SocialList />
 		</div>
 	</section>
@@ -113,7 +130,7 @@ const projects = selectedPosts.slice(0, 3).map((post, index) => ({
 					<a class="project-card" href={project.href} aria-label={`${project.title} (${project.label})`}>
 						<div class="project-art">
 							<img class="project-image" src={project.image} alt={project.imageAlt} />
-							<p class="meta-text project-label">{project.label}</p>
+							
 							<h3 class="project-title">{project.title}</h3>
 						</div>
 					</a>
@@ -195,6 +212,10 @@ const projects = selectedPosts.slice(0, 3).map((post, index) => ({
 		position: relative;
 		z-index: 2;
 		background: #f5f5f3;
+	}
+
+	.hero-name {
+		color: var(--theme-name);
 	}
 
 	.projects-grid {

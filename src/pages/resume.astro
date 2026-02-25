@@ -1,23 +1,37 @@
 ---
 import PageLayout from "@/layouts/Base";
 
-const resumePdfPath = "/resume/evey-huang-cv.pdf";
+const resumePdfPath = "/Evey%20Huang-CV.pdf";
 
 const experience = [
 	{
-		role: "Postdoctoral Research Fellow",
-		org: "Kellogg School of Management & NICO, Northwestern University",
-		period: "2025 - Present",
+		role: "Postdoctoral Researcher and Engineer",
+		org: "Northwestern University (NICO & Kellogg School of Management)",
+		period: "Feb 2025 - Present",
 		summary:
-			"Researching multimodal AI systems for scientific collaboration and high-impact teamwork.",
+			"I design and build multimodal and agentic AI systems to analyze how research and business teams collaborate in real work settings. I run end-to-end evaluations across 500+ hours of team data and turn the findings into practical guidance for partners.",
 	},
 	{
-		role: "PhD Researcher",
-		org: "Technology and Social Behavior, Northwestern University",
-		period: "2019 - 2024",
+		role: "Graduate Researcher",
+		org: "Delta Lab, Northwestern University",
+		period: "Sep 2019 - Dec 2024",
 		summary:
-			"Designed and evaluated proactive human-AI coaching systems for learning and entrepreneurship contexts.",
+			"I designed, built, and evaluated proactive human-AI coaching systems for entrepreneurship, design, and learning contexts. This included live deployment, iterative studies, and mixed-method evaluation with users and partner organizations.",
 	},
+	{
+		role: "AI Technical Advisor",
+		org: "Spark AI (EdTech), China",
+		period: "Dec 2024 - 2025",
+		summary:
+			"I advised product and engineering teams on AI feature design, model integration, and deployment strategy for K-12 learning products. My focuswas balancing capability with responsible AI and safety for real users.",
+	},
+	{
+		role: "UX Researcher",
+		org: "Northwestern Memorial Hospital",
+		period: "Jun 2022 - Aug 2022",
+		summary:
+			"I led usability research with older adults on electronic health record workflows, including medication and scheduling tasks. I translated findings into prioritized design recommendations for hospital stakeholders.",
+	}
 ];
 
 const education = [
@@ -27,9 +41,9 @@ const education = [
 		year: "2024",
 	},
 	{
-		degree: "BS/MS studies in HCI and Computing",
-		school: "Relevant interdisciplinary training",
-		year: "Earlier",
+		degree: "BA, Economics",
+		school: "University of California, Berkeley",
+		year: "2017",
 	},
 ];
 
@@ -37,8 +51,28 @@ const highlights = [
 	"Human-AI collaboration",
 	"Design research",
 	"Computational social science",
-	"Multimodal behavior analysis",
-	"Applied AI prototyping",
+	"Mixed-method Research",
+	"Multimodal AI for behavior analysis",
+	"Agentic and generative AI System",
+];
+
+const skills = [
+	{
+		area: "AI & ML",
+		items: "Multimodal AI, agentic systems, Machine Learning, LLM evaluation, machine learning, statistical modeling",
+	},
+	{
+		area: "Engineering",
+		items: "Python, JavaScript/TypeScript, React, Node.js, full-stack prototyping, data pipelines",
+	},
+	{
+		area: "Research Methods",
+		items: "Experiment design, mixed-methods evaluation, qualitative interviews, usability testing, behavioral analysis",
+	},
+	{
+		area: "Collaboration",
+		items: "Cross-functional leadership, stakeholder communication, translating research into actionable strategy",
+	},
 ];
 
 const meta = {
@@ -51,21 +85,20 @@ const meta = {
 	<section>
 		<div class="section-head">
 			<h1>Resume / CV</h1>
-			<p class="section-label">Web + PDF</p>
+			
 		</div>
-		<p class="max-w-3xl text-[1.02rem] text-muted">
-			A clean web-first resume for quick scanning, plus an embedded PDF for full-print fidelity.
-			Replace <code>{resumePdfPath}</code> with your latest CV file when needed.
-		</p>
+		
 	</section>
 
-	<section class="section-block grid gap-4 lg:grid-cols-[1.05fr_1fr]">
-		<article class="surface-card">
-			<h2 class="text-2xl font-semibold text-accent-2">Experience</h2>
-			<ul class="mt-5 space-y-5">
+	<section class="section-block grid items-start gap-6 lg:grid-cols-[1.05fr_1fr]">
+		<article>
+			<div class="border-b border-line pb-3">
+				<h2 class="text-2xl font-semibold text-accent-2">Experience</h2>
+			</div>
+			<ul class="post-list mt-2">
 				{
 					experience.map((item) => (
-						<li class="border-t border-dashed border-line pt-4">
+						<li class="post-list-item">
 							<p class="meta-text">{item.period}</p>
 							<h3 class="mt-1 text-lg font-medium">{item.role}</h3>
 							<p class="text-sm text-muted">{item.org}</p>
@@ -75,11 +108,13 @@ const meta = {
 				}
 			</ul>
 
-			<h2 class="mt-8 text-2xl font-semibold text-accent-2">Education</h2>
-			<ul class="mt-4 space-y-4">
+			<div class="mt-8 border-b border-line pb-3">
+				<h2 class="text-2xl font-semibold text-accent-2">Education</h2>
+			</div>
+			<ul class="post-list mt-2">
 				{
 					education.map((item) => (
-						<li class="border-t border-dashed border-line pt-3">
+						<li class="post-list-item">
 							<p class="meta-text">{item.year}</p>
 							<h3 class="mt-1 text-lg font-medium">{item.degree}</h3>
 							<p class="text-sm text-muted">{item.school}</p>
@@ -88,18 +123,32 @@ const meta = {
 				}
 			</ul>
 
-			<h2 class="mt-8 text-2xl font-semibold text-accent-2">Focus Areas</h2>
-			<div class="mt-3 flex flex-wrap gap-2">
-				{highlights.map((item) => <span class="button-pill">{item}</span>)}
+			<div class="mt-8 border-b border-line pb-3">
+				<h2 class="text-2xl font-semibold text-accent-2">Focus Areas</h2>
 			</div>
+			<div class="mt-4 flex flex-wrap gap-2">
+				{highlights.map((item) => <span class="button-pill button-pill-soft">{item}</span>)}
+			</div>
+
+			<div class="mt-8 border-b border-line pb-3">
+				<h2 class="text-2xl font-semibold text-accent-2">Skills</h2>
+			</div>
+			<ul class="post-list mt-2">
+				{
+					skills.map((skill) => (
+						<li class="post-list-item">
+							<h3 class="text-base font-medium">{skill.area}</h3>
+							<p class="mt-1 text-sm text-muted">{skill.items}</p>
+						</li>
+					))
+				}
+			</ul>
 		</article>
 
-		<article class="surface-card overflow-hidden p-0">
+		<article class="surface-card self-start overflow-hidden p-0 lg:sticky lg:top-24">
 			<div class="flex items-center justify-between border-b border-line bg-[#ebece7] px-4 py-3">
-				<p class="meta-text">Embedded PDF preview</p>
-				<a class="button-pill" href={resumePdfPath} target="_blank" rel="noopener noreferrer">
-					Download
-				</a>
+				<p class="meta-text">Full CV (last updated on Dec 2025)</p>
+				
 			</div>
 			<object
 				data={resumePdfPath}

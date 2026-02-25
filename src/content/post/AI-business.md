@@ -1,5 +1,5 @@
 ---
-title: "Can Agentic AI Turn Business Team's Complex Workflows into Everyone's Superpower?"
+title: "Can Agentic AI Support Real Business Teams' Complex Workflows?"
 description: "When every employee uses AI differently, quality becomes a lottery. I worked with an international business in the e-commerce industry to design and build an agentic AI system that transforms it's best practices into structured, repeatable workflows, so complex work runs consistently, regardless of who's asking."
 publishDate: "18 Feb 2026"
 featured: true

@@ -45,21 +45,20 @@ const paginationProps = {
 <PageLayout meta={meta}>
 	<section>
 		<div class="section-head">
-			<h1>Work</h1>
-			<p class="section-label">Research + engineering</p>
+			<h1>Research and Industry Projects</h1>
+			<p class="section-label">Human-AI Design, Research, Engineering</p>
 		</div>
 		<p class="max-w-3xl text-[1.02rem] text-muted">
-			Long-form writing on human-AI collaboration, project build logs, and multimedia-rich case
-			studies.
+			Learn more about my research and industry projects that designs and builds human-AI systems and evaluates them in real-world settings.
 		</p>
 	</section>
 
 	<div class="section-block grid gap-8 lg:grid-cols-[2fr_1fr] lg:gap-10">
 		<section aria-label="Work post list">
-			<ul class="space-y-3 text-start">
+			<ul class="post-list text-start">
 				{
 					page.data.map((p) => (
-						<li class="surface-card">
+						<li class="post-list-item">
 							<PostPreview post={p} as="h2" withDesc />
 						</li>
 					))
@@ -71,13 +70,13 @@ const paginationProps = {
 		</section>
 		{
 			uniqueTags.length > 0 && (
-				<aside class="surface-card h-fit">
+				<aside class="surface-panel h-fit">
 					<h2 class="text-lg font-medium text-accent-2">Browse by tag</h2>
 					<ul class="mt-4 flex flex-wrap gap-2">
 						{uniqueTags.map((tag) => (
 							<li>
 								<a
-									class="button-pill"
+									class="button-pill button-pill-soft"
 									href={`/tags/${tag}`}
 									aria-label={`View all posts with the tag: ${tag}`}
 								>
@@ -86,7 +85,7 @@ const paginationProps = {
 							</li>
 						))}
 					</ul>
-					<a class="mt-5 inline-flex cactus-link text-sm" href="/tags" aria-label="View all work categories">
+					<a class="mt-5 inline-flex text-sm text-accent hover:text-accent-2" href="/tags" aria-label="View all work categories">
 						View all tags
 					</a>
 				</aside>
