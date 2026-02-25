@@ -1,0 +1,24 @@
+---
+interface Props {
+	src: string;
+	title: string;
+	allow?: string;
+}
+
+const {
+	src,
+	title,
+	allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+} = Astro.props;
+---
+
+<div class="my-8 overflow-hidden rounded-xl border border-line bg-white">
+	<iframe
+		src={src}
+		title={title}
+		allow={allow}
+		allowfullscreen
+		loading="lazy"
+		referrerpolicy="strict-origin-when-cross-origin"
+	></iframe>
+</div>

@@ -3,34 +3,40 @@ import PageLayout from "@/layouts/Base";
 import { getUniqueTagsWithCount } from "@/utils";
 import { getCollection } from "astro:content";
 
-const allPosts = await getCollection("post");
+const allPosts = await getCollection("post", ({ data }) => !data.draft);
 const allTags = getUniqueTagsWithCount(allPosts);
 
 const meta = {
 	title: "All Tags",
-	description: "All Tags from my blogs",
+	description: "Browse all blog tags",
 };
 ---
 
 <PageLayout meta={meta}>
-	<h1 class="title mb-6">Tags</h1>
-	<ul class="space-y-4">
-		{
-			Object.entries(allTags).map(([tag, val]) => (
-				<li class="flex items-center gap-x-2">
-					<a
-						class="cactus-link inline-block"
-						href={`/tags/${tag}`}
-						title={`View posts with the tag: ${tag}`}
-						rel="prefetch"
-					>
-						&#35;{tag}
-					</a>
-					<span class="inline-block">
-						- {val} Post{val > 1 && "s"}
-					</span>
-				</li>
-			))
-		}
-	</ul>
+	<section>
+		<div class="section-head">
+			<h1>Tags</h1>
+			<p class="section-label">All categories</p>
+		</div>
+		<ul class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+			{
+				Object.entries(allTags).map(([tag, val]) => (
+					<li>
+						<a
+							class="surface-panel block"
+							href={`/tags/${tag}`}
+							title={`View posts with the tag: ${tag}`}
+							rel="prefetch"
+						>
+							<p class="meta-text">Tag</p>
+							<h2 class="mt-2 text-lg font-medium text-accent-2">#{tag}</h2>
+							<p class="mt-2 text-sm text-muted">
+								{val} Post{val > 1 && "s"}
+							</p>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
 </PageLayout>

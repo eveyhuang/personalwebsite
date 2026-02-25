@@ -3,20 +3,26 @@ export const MENU_LINKS = [
 		title: "Home",
 		path: "/",
 	},
-	// {
-	// 	title: "About",
-	// 	path: "/about",
-	// },
 	{
 		title: "Publications",
 		path: "/publications",
 	},
+	{
+		title: "Work",
+		path: "/posts",
+	},
+	{
+		title: "Resume",
+		path: "/resume",
+	},
 ];
 
-// ! Remember to add your own socials
+// Update these links with your current profiles
 export const SOCIAL_LINKS = {
-	twitter: "https://twitter.com/evey_huang",
-	email: "eveyhuang@u.northwestern.edu",
+
+	email: "jiaxinh.evey@gmail.com",
 	linkedin: "https://www.linkedin.com/in/eveyhuang/",
 	behance: "https://www.behance.net/eveywhere",
+	google_scholar: "https://scholar.google.com/citations?user=anVVJXQAAAAJ&hl=en&oi=ao",
+	github: "https://github.com/eveyhuang",
 };

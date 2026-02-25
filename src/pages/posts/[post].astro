@@ -5,7 +5,7 @@ import { getCollection } from "astro:content";
 import PostLayout from "@/layouts/BlogPost";
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-	const posts: CollectionEntry<"post">[] = await getCollection("post");
+	const posts: CollectionEntry<"post">[] = await getCollection("post", ({ data }) => !data.draft);
 	const params = posts.map((post) => ({
 		params: { post: post.slug },
 		props: { post },

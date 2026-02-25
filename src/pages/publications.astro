@@ -1,96 +1,179 @@
 ---
 import PageLayout from "@/layouts/Base";
 
-const meta = {
-	title: "Publications",
-	description: "list of publications",
+const conferenceAndJournalPapers = [
+	{
+		title:
+			"AI That Helps Us Help Each Other: A Proactive System for Scaffolding Mentor-Novice Collaboration in Entrepreneurship Coaching",
+		authors: "Evey Huang, Matthew Easterday, Elizabeth Gerber",
+		venue: "Proc. ACM Hum.-Comput. Interact., CSCW368",
+		year: "2025",
+		link: "http://arxiv.org/abs/2508.11052",
+	},
+	{
+		title:
+			"Opportunities, tensions, and challenges in computational approaches to addressing online harassment [Honorable Mention]",
+		authors: "Evey Huang, Abhraneel Sarma, Sohyeon Hwang, Eshwar Chandrasekharan, Stevie Chancellor",
+		venue: "Designing Interactive Systems Conference (DIS)",
+		year: "2024",
+		link: "https://dl.acm.org/doi/abs/10.1145/3643834.3661623",
+	},
+	{
+		title:
+			"Intelligent Coaching Systems: Understanding One-to-many Coaching for Ill-defined Problem Solving",
+		authors: "Evey Huang, Daniel Rees Lewis, Shubhanshi Gaudani, Matthew Easterday, Elizabeth Gerber",
+		venue: "Proc. ACM Hum.-Comput. Interact. 7, CSCW",
+		year: "2023",
+		link: "https://doi.org/10.1145/3579614",
+	},
+	{
+		title: "Designing a Model for Deliberation-based Learning",
+		authors: "Spencer Carlson, Kristine Lu, Evey Huang, Elizabeth Gerber, Matthew Easterday",
+		venue: "International Conference of the Learning Sciences",
+		year: "2020",
+		link: "https://www.researchgate.net/publication/339912236_Designing_a_Model_for_Deliberation-Based_Learning",
+	},
+	{
+		title: "Interacting with Literary Style through Computational Tools",
+		authors: "Sarah Sterman, Evey Huang, Vivian Liu, Eric Paulos",
+		venue: "CHI Conference on Human Factors in Computing Systems",
+		year: "2020",
+		link: "https://dl.acm.org/doi/10.1145/3313831.3376730",
+	},
+	{
+		title: "No More One Liners: Bringing Context into Emoji Recommendations",
+		authors:
+			"Joon-Gyum Kim, Taesik Gong, Bogoan Kim, JaeYeon Park, Woojeong Kim, Evey Huang, Kyungsik Han, Juho Kim, JeongGil Ko, Sung-Ju Lee",
+		venue: "ACM Transactions on Social Computing",
+		year: "2019",
+		link: "https://dl.acm.org/doi/abs/10.1145/3373146",
+	},
+];
+
+const workshopsAndPresentations = [
+	{
+		title: "Evaluating Multimodal Language Models for Annotating Team Behaviors in Videos",
+		authors: "Evey Huang, Matt Groh, Danny Abrams, Brian Uzzi",
+		venue: "11th International Conference on Computational Social Science (IC2S2 ‘2025)",
+		year: "2025",
+	},
+
+	{
+		title: "Designing Intelligent Coaching Systems to Support Equitable Engagement in Making",
+		authors: "Evey Huang, Matthew Easterday, Elizabeth Gerber",
+		venue: "CHI '22 workshop on Learning Hands-on Creative and Maker Skills",
+		year: "2022",
+		link: "https://drive.google.com/file/d/1YXq4ev17ana0sbxdgX2ie0BwLN9uLEDG/view?usp=sharing",
+	},
+	{
+		title: "Encouraging Disagreements to Integrate Diversity in Collective Intelligence",
+		authors: "Evey Huang, Matthew Easterday, Elizabeth Gerber",
+		venue: "CHI '20 workshop on Effective Activism for Change",
+		year: "2020",
+	},
+];
+
+const dissertation = {
+	title:
+		"Human-AI Collaboration For Entrepreneurship Coaching: Leveraging a Cognitive Model and an LLM to Provide Proactive, Adaptive, and Differentiated Support",
+	authors: "Evey Huang",
+	venue: "Doctoral dissertation",
+	year: "2024",
+	link: "https://www.proquest.com/openview/d0591dc834a0e8bf80c41883948c8e5d/1?cbl=18750&diss=y&pq-origsite=gscholar",
 };
 
+const meta = {
+	title: "Publications",
+	description: "Selected publications, workshop papers, and dissertation",
+};
 ---
 
 <PageLayout meta={meta}>
-    <h1 class="title">Publications</h1>
-    <section class="mt-8">
-		<h2 class="title mb-1 text-xl">Conference & Journal Papers</h2>
-		
-		<ul class="space-y-4 sm:space-y-2">
-			<li>
-				<p class="inline-block sm:mt-6">[1] <b>AI That Helps Us Help Each Other: A Proactive System for Scaffolding Mentor-Novice Collaboration in Entrepreneurship Coaching</b> 
-					<br> Evey Huang, Matthew Easterday, Elizabeth Gerber.  2025. Proc. ACM Hum.-Comput. Interact., Vol. 9, No. 7, Article CSCW368 (November 2025) 
-					<br> <u><a href="http://arxiv.org/abs/2508.11052">link to preprint</a></u>
-                    <!-- [<u><a href="https://dl.acm.org/doi/abs/10.1145/3643834.3661623">link</a></u>] -->
-				</p> 
-				
-				<p class="inline-block sm:mt-6">[2] <b>Opportunities, tensions, and challenges in computational approaches to addressing online harassment [Honorable Mention]</b> 
-					<br> Evey Huang, Abhraneel Sarma, Sohyeon Hwang, Eshwar Chandrasekharan & Stevie Chancellor. 2024. Proc. ACM Designing Interactive Systems Conference (2024) 
-                    [<u><a href="https://dl.acm.org/doi/abs/10.1145/3643834.3661623">link</a></u>]
-				</p> 
+	<section>
+		<div class="section-head">
+			<h1>Publications</h1>
+			<p class="section-label">Research Output</p>
+		</div>
+		<p class="max-w-3xl text-[1.03rem] text-muted">
+			Selected papers and presentations acros HCI, human-AI collaboration, and computational social science.
+		</p>
+	</section>
 
-				<p class="inline-block sm:mt-6">[3] <b>Intelligent Coaching Systems: Understanding One-to-many Coaching for Ill-defined Problem Solving</b> 
-					<br> Evey Huang, Daniel Rees Lewis, Shubhanshi Gaudani, Matthew Easterday & Elizabeth Gerber. 2023. Proc. ACM Hum.-Comput. Interact. 7, CSCW, Article 138 (April 2023) 
-                    [<u><a href="https://doi.org/10.1145/3579614">link</a></u>]
-				</p> 
-
-				<p class="inline-block sm:mt-6">[4] <b>Designing a Model for Deliberation-based Learning</b> 
-					<br> Spencer Carlson, Kristine Lu, Evey Huang, Elizabeth Gerber & Matthew Easterday. 2020. In International Conference of the Learning Sciences (2020) 
-                    [<u><a href="https://www.researchgate.net/publication/339912236_Designing_a_Model_for_Deliberation-Based_Learning">link</a></u>]
-				</p>
-
-                <p class="inline-block sm:mt-6">[5] <b>Interacting with Literary Style through Computational Tools</b> 
-					<br> Sarah Sterman, Evey Huang, Vivian Liu & Eric Paulos. 2020.  In Proceedings of the 2020 CHI Conference on Human Factors in Computing Systems (CHI '20)  
-                    [<u><a href="https://dl.acm.org/doi/10.1145/3313831.3376730">link</a></u>]
-				</p>
-
-                <p class="inline-block sm:mt-6">[6] <b>No More One Liners: Bringing Context into Emoji Recommendations</b> 
-					<br> Joon-Gyum Kim, Taesik Gong, Bogoan Kim, JaeYeon Park, Woojeong Kim, Evey Huang, Kyungsik Han, Juho Kim, JeongGil Ko & Sung-Ju Lee. In ACM Transactions on Social Computing (TSC '19) 
-                    [<u><a href="https://dl.acm.org/doi/abs/10.1145/3373146">link</a></u>]
-				</p>
-				
-				
-			</li>
-			
+	<section class="section-block">
+		<div class="section-head">
+			<h2>Conference & Journal Papers</h2>
+			<p class="section-label">Peer-reviewed</p>
+		</div>
+		<ul class="space-y-5">
+			{
+				conferenceAndJournalPapers.map((paper, index) => (
+					<li class="border-t border-dashed border-line pt-4">
+						<p>
+							[{index + 1}] <strong>{paper.title}</strong>
+						</p>
+						<p class="text-sm text-muted">{paper.authors}</p>
+						<p class="text-sm text-muted">{paper.year}. {paper.venue}</p>
+						{
+							paper.link && (
+								<a class="cactus-link text-sm" href={paper.link} target="_blank" rel="noopener noreferrer">
+									View publication
+								</a>
+							)
+						}
+					</li>
+				))
+			}
 		</ul>
 	</section>
 
-    <section class="mt-16">
-		<h2 class="title mb-1 text-xl">Workshop & Conference Presentations</h2>
-		
-		<ul class="space-y-4 sm:space-y-2">
-			<li>
-                <p class="inline-block sm:mt-6">[1] <b>Designing Technology to Support Coaching in Informal Learning Environments</b>
-                    <br> Evey Huang, Daniel Rees Lewis, Matthew Easterday & Elizabeth Gerber. 2023. In Helgason I. et al., (Chairs), Digital Skills for the Creative Practitioner: Supporting Informal Learning of Technologies for Creativity.
-                    Workshop conducted at the ACM Conference on Human Factors in Computing Systems (CHI ’23)
-                    [<u><a href='https://chi2023digitalskillsforthecreativepractitioner.files.wordpress.com/2023/04/chi23_informal_learning.pdf'>link</a></u>]
-                </p>
-				<p class="inline-block sm:mt-6">[2] <b>Designing Intelligent Coaching Systems to Support Equitable Engagement in Making </b>
-                    <br> Evey Huang, Matthew Easterday, Elizabeth Gerber. 2022. In Turakhia D. et al., (Chairs), Reimagining Systems for Learning Hands-on Creative and Maker Skills. Workshop conducted at the ACM Conference on Human Factors in Computing Systems (CHI ’22)</p> 
-                    [<u><a href='https://drive.google.com/file/d/1YXq4ev17ana0sbxdgX2ie0BwLN9uLEDG/view?usp=sharing'>link</a></u>]
+	<section class="section-block">
+		<div class="section-head">
+			<h2>Workshop & Conference Presentations</h2>
+			<p class="section-label">Invited and workshop</p>
+		</div>
+		<ul class="space-y-5">
+			{
+				workshopsAndPresentations.map((paper, index) => (
+					<li class="border-t border-dashed border-line pt-4">
+						<p>
+							[{index + 1}] <strong>{paper.title}</strong>
+						</p>
+						<p class="text-sm text-muted">{paper.authors}</p>
+						<p class="text-sm text-muted">{paper.year}. {paper.venue}</p>
+						{
+							paper.link && (
+								<a class="cactus-link text-sm" href={paper.link} target="_blank" rel="noopener noreferrer">
+									View material
+								</a>
+							)
+						}
+					</li>
+				))
+			}
+		</ul>
+	</section>
 
-				<p class="inline-block sm:mt-6">[3] <b>Encouraging Disagreements to Integrate Diversity in Collective Intelligence </b> 
-					<br> Evey Huang, Matthew Easterday, Elizabeth Gerber. 2020. In Bardzell, S. et al., (Chairs), Moving Forward Together: Effective Activism for Change. Workshop conducted at the ACM Conference on Human Factors in Computing Systems (CHI ’20)
+	<section class="section-block">
+		<div class="section-head">
+			<h2>Dissertation</h2>
+			<p class="section-label">Doctoral work</p>
+		</div>
+		<ul class="space-y-5">
+			<li class="border-t border-dashed border-line pt-4">
+				<p>
+					[1] <strong>{dissertation.title}</strong>
 				</p>
-				
-				
+				<p class="text-sm text-muted">{dissertation.authors}</p>
+				<p class="text-sm text-muted">{dissertation.year}. {dissertation.venue}</p>
+				<a
+					class="cactus-link text-sm"
+					href={dissertation.link}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					View dissertation
+				</a>
 			</li>
-			
 		</ul>
 	</section>
-
-	<section class="mt-16">
-		<h2 class="title mb-1 text-xl">Dissertation</h2>
-		
-		<ul class="space-y-4 sm:space-y-2">
-			<li>
-                <p class="inline-block sm:mt-6">[1] <b>Human-AI Collaboration For Entrepreneurship Coaching: Leveraging a Cognitive Model and an LLM to Provide Proactive, Adaptive, and Differentiated Support</b>
-                    <br> Evey Huang
-                    [<u><a href='https://www.proquest.com/openview/d0591dc834a0e8bf80c41883948c8e5d/1?cbl=18750&diss=y&pq-origsite=gscholar'>link</a></u>]
-                </p>
-				
-				
-			</li>
-			
-		</ul>
-	</section>
-
-
 </PageLayout>

@@ -1,106 +1,308 @@
 ---
-// import { getCollection } from "astro:content";
 import PageLayout from "@/layouts/Base";
-// import PostPreview from "@/components/blog/PostPreview";
 import SocialList from "@/components/SocialList";
-// import { sortMDByDate } from "@/utils";
-import { Image } from "@astrojs/image/components";
-
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { sortMDByDate } from "@/utils";
 import profileImg from "../assets/evey-profile.png";
 
+const newsItems = [
+	{
+		date: "Feb 11, 2026",
+		location: "Evanston, USA",
+		text: "Our grant proposal on using Multimodal LLMs for surfacing team collaboration in real time won the finalist (top 10% out of 250+ proposals from the world) of the AI for Organizations Grand Challenge organized by Google Deepmind and Stanford HAI.",
+		
+	},
+	{
+		date: "Oct 18-22, 2025",
+		location: "Bergen, Norway",
+		text: "Attending CSCW 2025 to present my paper: 'AI That Helps Us Help Each Other: A Proactive System for Scaffolding Mentor-Novice Collaboration in Entrepreneurship Coaching'.",
+		
+	},
+	{
+		date: "Jul 22-24, 2025",
+		location: "Linkoping, Sweden",
+		text: "Attending IC2S2 2025 to present our work on applying multimodal AI to decode team interactions for real life-science teams.",
+	},
+	{
+		date: "May 12, 2025",
+		location: "Evanston, USA",
+		text: "Talked at Northwestern CBIT about proactive human-AI collaboration.",
+	},
+	{
+		date: "Apr 2, 2025",
+		location: "Evanston, USA",
+		text: "Presented my work on proactive human-AI collaboration at Microsoft AI & Society research seminar.",
+	},
+	{
+		date: "Feb 5, 2025",
+		location: "Evanston, USA",
+		text: "Started as a postdoctoral fellow at NICO with Prof. Brian Uzzi.",
+	},
+	{
+		date: "Nov 11, 2024",
+		location: "Evanston, USA",
+		text: "Successfully defended dissertation.",
+	},
+];
 
-// const MAX_POSTS = 10;
-// const allPosts = await getCollection("post");
-// const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+const artImages = ["/1.png", "/2.png", "/3.png"];
+const allPosts = sortMDByDate(await getCollection("post", ({ data }) => !data.draft));
+
+const featuredPosts = allPosts.filter((post) => post.data.featured);
+const selectedPosts = [...featuredPosts];
+if (selectedPosts.length < 3) {
+	const remainingPosts = allPosts.filter((post) => !post.data.featured);
+	selectedPosts.push(...remainingPosts.slice(0, 3 - selectedPosts.length));
+}
+
+const projects = selectedPosts.slice(0, 3).map((post, index) => ({
+	href: `/posts/${post.slug}`,
+	label: "Work",
+	title: post.data.title,
+	image: post.data.coverImage ?? artImages[index] ?? artImages[0],
+	imageAlt: post.data.coverAlt || `Artwork for ${post.data.title}`,
+}));
 ---
 
-<PageLayout meta={{ title: "Home" }}>
-	<section class="space-y-6">
-		<!-- <h1 class="title mb-6">Evey Huang</h1> -->
-		
-		<div class="flex justify-center">
-			<Image
-				src={profileImg}
-				width={180}
-				loading="eager"
-			/>
-		</div>
-		<div >
-			<p class="mb-4" class="flex justify-right">
-				Hi! I'm Evey (yes, like the Pokémon). I'm currently a postdoctoral research fellow at Kellogg School of Management and the Northwestern Institute on Complex Systems (NICO), working with Prof. <a href='https://www.kellogg.northwestern.edu/faculty/directory/uzzi_brian/'><u>Brian Uzzi</u></a>.
-
-				<br><br>
-				My research sits at the intersection of human-AI collaboration, design research, and computational social science. I design, build, and study human-AI systems that help people learn, reflect, and collaborate more effectively—especially in complex, real-world domains like entrepreneurship, scientific discovery, and innovation. I earned my Ph.D. from the Technology and Social Behavior program, a joint degree in Computer Science and Communication at Northwestern, where I was fortunate to be advised by <a href='https://egerber.mech.northwestern.edu'><u>Prof. Liz Gerber</u></a> and <a href='http://matteasterday.com'><u>Prof. Matt Easterday</u></a> .
-				
-				<br><br>
-				Right now, I'm exploring how we can use multimodal AI to understand team dynamics and behaviors that lead to high-impact science, and investigating how AI is reshaping how scientists work, collaborate, and generate knowledge.
-
-				<br><br>
-				When I'm not doing research, you'll probably find me behind a camera (digital or film), on a tennis court, reading, doodling, cooking spicy food, or hanging out with my chubby cat, Jumi.
-				<br><br>  You can contact me at evey.huang@kellogg.northwestern.edu
+<PageLayout meta={{ title: "Home", description: "Human-AI collaboration research and engineering portfolio" }}>
+	<section class="grid gap-10 lg:grid-cols-[1.35fr_1fr]">
+		<div>
+			<h1 class="display-title">hi.</h1>
+			<p class="mt-8 serif-note">
+				My name is Evey. I have been designing, researching, and building AI technologies that collaborate 
+				with humans to tackle challenges in real-world, complex domains like science, innovation, and business. 
+				I incorporate design research and computational social science methods to understand people's needs and 
+				behaviors, build generative or agentic AI systems to support them, and evaluate these technologies in real-world settings for impact.
 			</p>
 		</div>
-		
-		<SocialList />
+		<div class="hero-frame">
+			<div class="hero-frame-content">
+				<Image
+					src={profileImg}
+					width={340}
+					alt="Portrait of Evey Huang"
+					class="hero-portrait"
+				/>
+				<p class="meta-text">Designer, Researcher, Engineer.</p>
+				<p class="mt-2 text-3xl font-medium tracking-tight hero-name">Evey Huang, PhD.</p>
+			</div>
+		</div>
 	</section>
 
+	<section class="section-block">
+		<div class="max-w-4xl space-y-5">
+			<p>
+				Currently, I am a postdoctoral researcher at Kellogg School of Management and the Northwestern
+				Institute on Complex Systems (NICO), working on few strings of research: 
+				(1) building and evaluating multimodal AI pipelines to decode real-world team dynamics in life sciences and business domains. 
+				(2) investigating AI's capabilities and limitations in producing novel and impactful research.
+				(3) developing a rigorous evalutaion framework for using AI in scientific discovery.
+			</p>
+			<p>	
+				I earned my PhD from the Technology and Social Behavior program (joint degree between Computer Science and Communication Studies) 
+				at Northwestern University, where I worked with an innovation incubator on desigining and building proactive AI systems that serve as a thinking partner for 
+				tackling real-world challenges. During my PhD, I also coached extensively undergraduate engineering students
+				on human-centered design and engineering practices. 
+			</p>
+			<p>
+				Besides academic research, I am also invovled with two separate startups as an AI technical advisor and engineer.
+				I am designing and building agentic AI systems for (1) personalized learning in K-12 classrooms and (2) team-level collaboration in complex business workflows. 	
+			</p>
+			<p>
+				Outside of work, you most likely will find me playing guitar, doing film and digital photography, playing tennis, reading, doodling, and cooking spicy food. 
+			</p>
 
-	<!-- <section aria-label="Blog post list" class="mt-16">
-		<h2 class="title mb-4 text-xl">Posts</h2>
-		<ul class="space-y-4 sm:space-y-2">
+			<p> If you also have been poundering on similar questions, and suspect that the improvements of foundational models 
+				alone won't be enough to tackle real-world challenges, let's chat!</p>
+			<SocialList />
+		</div>
+	</section>
+
+	<section class="section-block">
+		<div class="section-head">
+			<h2>What I have been trying to tackle</h2>
+			<p class="section-label">Selected research and projects</p>
+		</div>
+		<div class="projects-grid">
 			{
-				allPostsByDate.map((p) => (
-					<li class="flex flex-col gap-x-2 sm:flex-row">
-						<PostPreview post={p} />
+				projects.map((project) => (
+					<a class="project-card" href={project.href} aria-label={`${project.title} (${project.label})`}>
+						<div class="project-art">
+							<img class="project-image" src={project.image} alt={project.imageAlt} />
+							
+							<h3 class="project-title">{project.title}</h3>
+						</div>
+					</a>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="section-block">
+		<div class="section-head">
+			<h2>News</h2>
+			<p class="section-label">Recent updates</p>
+		</div>
+		<ul class="news-list">
+			{
+				newsItems.map((item) => (
+					<li>
+						<p class="meta-text">{item.date} · {item.location}</p>
+						<p class="mt-1 text-[0.98rem]">
+							{item.text}
+							{item.link && (
+								<>
+									{" "}
+									<a class="cactus-link" href={item.link} target="_blank" rel="noopener noreferrer">
+										{item.linkLabel}
+									</a>
+								</>
+							)}
+						</p>
 					</li>
 				))
 			}
 		</ul>
-	</section> -->
-	<section class="mt-16">
-		<h2 class="title mb-4 text-xl">News</h2>
-		<ul class="space-y-4 sm:space-y-2">
-			
-			
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Oct 18-22, 2025</b> | Bergen, Norway | I will be attending CSCW 2025 to present our paper <a href="https://arxiv.org/abs/2508.11052"><u>AI That Helps Us Help Each Other</u></a>. Would love to meet and connect if you will be there as well.  </p>
-			</li>
-
-
-			<li>
-				<p class="inline-block sm:mt-2"> <b>May 12, 2025</b> | Evanston, USA | Gave a talk at Northwestern Center for Behavior Intervention Technologies (CBIT) on our work on proactive human-AI collaboration. </p>
-			</li>
-
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Apr 02, 2025</b> | Evanston, USA | Gave a talk at Microsoft AI & Society research seminar on our work on proactive AI that helps us help each other. </p>
-			</li>
-
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Feb 05, 2025</b> | Evanston, USA | First day as a postdoc at NICO, working with Prof. <a href='https://www.kellogg.northwestern.edu/faculty/directory/uzzi_brian/'><u>Brian Uzzi</u></a>!</p>
-			</li>
-
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Nov 11, 2024</b> | Evanston, USA | I have successfully defended my dissertation! Now I am Dr. Evey :) </p>
-			</li>
-
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Jul 1-5 2024</b> | Copenhagen, Denmark | Presenting <u><a href='https://dl.acm.org/doi/abs/10.1145/3643834.3661623'><u>our paper that own honorable mention</u></a></u> at DIS2024</p>
-			</li>
-
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Oct 14-18 2023</b> | Minneapolis, USA | Presenting <u><a href='https://doi.org/10.1145/3579614'><u>our paper on Intelligent Coaching Systems</u></a></u> at CSCW2023</p>
-			</li>
-			
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Apr 23-28 2023</b> | Hamburg, Germany | I will be attending CHI this week to attend a <u><a href="https://chi2023digitalskillsforthecreativepractitioner.wordpress.com"><u>workshop on supporting learning in informal learning environments</u></a></u>. </p>
-			</li>
-
-			<li>
-				<p class="inline-block sm:mt-2"> <b>Oct 22-25 2022 </b>| Evanston, USA | Attended the Lambert Conference on the Future of Human-Computer Interaction + Design and organized a poster session to showcase research from Northwestern community.  </p>
-			</li>
-			
-			
-		</ul>
 	</section>
-	
 </PageLayout>
+
+<style>
+	.hero-frame {
+		position: relative;
+		display: grid;
+		place-items: end;
+		min-height: 340px;
+	}
+
+	.hero-frame::before {
+		content: "";
+		position: absolute;
+		left: 10%;
+		top: 0;
+		height: 100%;
+		width: 1px;
+		background: var(--theme-line-strong);
+	}
+
+	.hero-frame::after {
+		content: "";
+		position: absolute;
+		right: 0;
+		bottom: 36%;
+		width: 82%;
+		height: 1px;
+		background: var(--theme-line-strong);
+	}
+
+	.hero-frame-content {
+		position: relative;
+		padding-left: 1.25rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.hero-portrait {
+		width: clamp(160px, 22vw, 280px);
+		aspect-ratio: 1 / 1;
+		object-fit: cover;
+		border-radius: 9999px;
+		border: 1px solid var(--theme-line);
+		margin-left: -2.6rem;
+		margin-bottom: 1.1rem;
+		position: relative;
+		z-index: 2;
+		background: #f5f5f3;
+	}
+
+	.hero-name {
+		color: var(--theme-name);
+	}
+
+	.projects-grid {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.project-card {
+		display: block;
+		padding: 0.25rem;
+		border-radius: 16px;
+		background: transparent;
+		border: 1px solid transparent;
+		transition: transform 220ms ease, border-color 220ms ease;
+	}
+
+	.project-card:hover {
+		transform: translateY(-2px);
+		border-color: var(--theme-line);
+	}
+
+	.project-art {
+		position: relative;
+		height: 240px;
+		border-radius: 12px;
+		background: var(--theme-bg);
+		overflow: hidden;
+	}
+
+	.project-image {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: saturate(0.9) contrast(1.01) brightness(0.97);
+		mix-blend-mode: multiply;
+		opacity: 0.98;
+		background: var(--theme-bg);
+	}
+
+	.project-label {
+		position: absolute;
+		left: 1rem;
+		top: 1rem;
+		color: var(--theme-accent-2);
+		opacity: 0.9;
+		z-index: 2;
+	}
+
+	.project-title {
+		position: absolute;
+		left: 1rem;
+		right: 1rem;
+		top: 2.7rem;
+		margin: 0;
+		font-size: 1.25rem;
+		line-height: 1.1;
+		font-weight: 600;
+		letter-spacing: -0.015em;
+		color: var(--theme-accent-2);
+		text-wrap: balance;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+		z-index: 2;
+	}
+
+	@media (max-width: 1023px) {
+		.hero-frame {
+			min-height: 230px;
+		}
+
+		.hero-frame::before {
+			left: 0;
+		}
+
+		.hero-portrait {
+			margin-left: 0;
+			width: clamp(170px, 34vw, 260px);
+		}
+
+		.projects-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.project-art {
+			height: 220px;
+		}
+	}
+</style>

@@ -1,15 +1,21 @@
 ---
 import PageLayout from "@/layouts/Base";
-import { Image } from "@astrojs/image/components";
-
-import profileImg from "../assets/evey-profile.jpg";
 
 const meta = {
 	title: "About",
-	description: "hello",
+	description: "About Evey Huang",
 };
 ---
 
 <PageLayout meta={meta}>
-	
+	<section>
+		<div class="section-head">
+			<h1>About</h1>
+			<p class="section-label">Bio</p>
+		</div>
+		<p class="max-w-3xl text-[1.02rem] text-muted">
+			This page can host a longer-form biography, teaching statement, and additional context about
+			research trajectory.
+		</p>
+	</section>
 </PageLayout>

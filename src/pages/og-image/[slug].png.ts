@@ -23,24 +23,37 @@ const [monoFontReg, monoFontBold] = await Promise.all([
 	fetchFont("https://api.fontsource.org/v1/fonts/roboto-mono/latin-700-normal.ttf"),
 ]);
 
+const fallbackPng = Buffer.from(
+	"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Wn0S7kAAAAASUVORK5CYII=",
+	"base64"
+);
+
 const ogOptions: SatoriOptions = {
 	width: 1200,
 	height: 630,
 	// debug: true,
 	embedFont: true,
 	fonts: [
-		{
-			name: "Roboto Mono",
-			data: monoFontReg || new ArrayBuffer(0),
-			weight: 400,
-			style: "normal",
-		},
-		{
-			name: "Roboto Mono",
-			data: monoFontBold || new ArrayBuffer(0),
-			weight: 700,
-			style: "normal",
-		},
+		...(monoFontReg
+			? [
+					{
+						name: "Roboto Mono",
+						data: monoFontReg,
+						weight: 400 as const,
+						style: "normal" as const,
+					},
+				]
+			: []),
+		...(monoFontBold
+			? [
+					{
+						name: "Roboto Mono",
+						data: monoFontBold,
+						weight: 700 as const,
+						style: "normal" as const,
+					},
+				]
+			: []),
 	],
 };
 
@@ -74,7 +87,16 @@ const markup = (title: string, pubDate: string) => html`<div
 	</div>
 </div>`;
 
-export async function get({ params: { slug } }: APIContext) {
+export async function GET({ params: { slug } }: APIContext) {
+	if (!monoFontReg && !monoFontBold) {
+		return new Response(fallbackPng, {
+			headers: {
+				"Content-Type": "image/png",
+				"Cache-Control": "public, max-age=31536000, immutable",
+			},
+		});
+	}
+
 	const post = await getEntryBySlug("post", slug!);
 	const title = post?.data.title ?? siteConfig.title;
 	const postDate = getFormattedDate(post?.data.publishDate ?? Date.now(), {
@@ -83,14 +105,16 @@ export async function get({ params: { slug } }: APIContext) {
 	});
 	const svg = await satori(markup(title, postDate), ogOptions);
 	const png = new Resvg(svg).render().asPng();
-	return {
-		body: png,
-		encoding: "binary",
-	};
+	return new Response(png, {
+		headers: {
+			"Content-Type": "image/png",
+			"Cache-Control": "public, max-age=31536000, immutable",
+		},
+	});
 }
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-	const posts = await getCollection("post");
+	const posts = await getCollection("post", ({ data }) => !data.draft);
 	return posts
 		.filter((post) => !post.data.ogImage)
 		.map((post) => ({ params: { slug: post.slug } }));
