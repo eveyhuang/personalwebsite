@@ -40,11 +40,20 @@ const newsItems = [
 
 const artImages = ["/1.png", "/2.png", "/3.png"];
 const allPosts = sortMDByDate(await getCollection("post", ({ data }) => !data.draft));
-const projects = allPosts.slice(0, 3).map((post, index) => ({
+
+const featuredPosts = allPosts.filter((post) => post.data.featured);
+const selectedPosts = [...featuredPosts];
+if (selectedPosts.length < 3) {
+	const remainingPosts = allPosts.filter((post) => !post.data.featured);
+	selectedPosts.push(...remainingPosts.slice(0, 3 - selectedPosts.length));
+}
+
+const projects = selectedPosts.slice(0, 3).map((post, index) => ({
 	href: `/posts/${post.slug}`,
 	label: "Work",
 	title: post.data.title,
-	image: artImages[index] ?? artImages[0],
+	image: post.data.coverImage ?? artImages[index] ?? artImages[0],
+	imageAlt: post.data.coverAlt || `Artwork for ${post.data.title}`,
 }));
 ---
 
@@ -53,9 +62,8 @@ const projects = allPosts.slice(0, 3).map((post, index) => ({
 		<div>
 			<h1 class="display-title">hi.</h1>
 			<p class="mt-8 serif-note">
-				I am a postdoctoral research fellow at Kellogg School of Management and the Northwestern
-				Institute on Complex Systems (NICO), studying how human-AI systems can better support
-				learning, reflection, and collaboration in complex work.
+				My name is Evey. I have been designing, researching, and building AI technologies that collaborate with humans to tackle challenges in real-world, complex domains like science, innovation, and business. 
+				I incorporate design research and computational social science methods to understand people's needs and behaviors, and build generative or agentic AI systems to support them.
 			</p>
 		</div>
 		<div class="hero-frame">
@@ -75,7 +83,9 @@ const projects = allPosts.slice(0, 3).map((post, index) => ({
 	<section class="section-block">
 		<div class="max-w-4xl space-y-5">
 			<p>
-				My research sits at the intersection of human-AI collaboration, design research, and
+				Currently, I am a postdoctoral researcher at Kellogg School of Management and the Northwestern
+				Institute on Complex Systems (NICO), studying how human-AI systems can better support
+				learning, reflection, and collaboration in complex work. My research sits at the intersection of human-AI collaboration, design research, and
 				computational social science. I design and build systems that help people collaborate more
 				effectively in entrepreneurship, scientific discovery, and innovation.
 			</p>
@@ -94,15 +104,15 @@ const projects = allPosts.slice(0, 3).map((post, index) => ({
 
 	<section class="section-block">
 		<div class="section-head">
-			<h2>Projects</h2>
-			<p class="section-label">Selected areas</p>
+			<h2>What I have been trying to tackle</h2>
+			<p class="section-label">Selected research and projects</p>
 		</div>
 		<div class="projects-grid">
 			{
 				projects.map((project) => (
 					<a class="project-card" href={project.href} aria-label={`${project.title} (${project.label})`}>
 						<div class="project-art">
-							<img class="project-image" src={project.image} alt={`Artwork for ${project.title}`} />
+							<img class="project-image" src={project.image} alt={project.imageAlt} />
 							<p class="meta-text project-label">{project.label}</p>
 							<h3 class="project-title">{project.title}</h3>
 						</div>
