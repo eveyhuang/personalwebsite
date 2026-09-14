@@ -5,15 +5,15 @@ export const MENU_LINKS = [
 	},
 	{
 		title: "Publications",
-		path: "/publications",
+		path: "/publications/",
 	},
 	{
 		title: "Research",
-		path: "/posts",
+		path: "/posts/",
 	},
 	{
 		title: "CV",
-		path: "/resume",
+		path: "/resume/",
 	},
 ];
 

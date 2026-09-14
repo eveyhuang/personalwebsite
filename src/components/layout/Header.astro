@@ -2,6 +2,7 @@
 import { MENU_LINKS } from "@/data/constants";
 
 const url = new URL(Astro.request.url);
+const currentPath = `${url.pathname.replace(/\/$/, "")}/`;
 ---
 
 <header class="mb-16 md:mb-20">
@@ -24,8 +25,7 @@ const url = new URL(Astro.request.url);
 					<a
 						href={link.path}
 						class="nav-link"
-						aria-current={url.pathname === link.path ? "page" : false}
-						rel="prefetch"
+						aria-current={currentPath === link.path ? "page" : false}
 					>
 						{link.title}
 					</a>
