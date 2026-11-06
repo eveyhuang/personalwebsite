@@ -1,5 +1,5 @@
 ---
-title: "What AI allows organizations to see"
+title: "How AI expands what organizations to see"
 description: "I develop multimodal AI pipelines for measuring interaction from video recordings of team interactions at scale, and uses them to examine how patterns of coordination, participation, and recovery unfold over time in real organizational settings."
 publishDate: "2026-09-14"
 status: "JOD perspective forthcoming · Empirical studies ongoing"
