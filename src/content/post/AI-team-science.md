@@ -1,6 +1,6 @@
 ---
-title: "Measuring Collaboration at Scale with Multimodal AI"
-description: "A methodological agenda and studies of scientific teams, entrepreneur–investor exchanges, and professional volleyball examine how collaboration unfolds through language, audio, and visible behavior."
+title: "What AI allows organizations to see"
+description: "I develop multimodal AI pipelines for measuring interaction from video recordings of team interactions at scale, and uses them to examine how patterns of coordination, participation, and recovery unfold over time in real organizational settings."
 publishDate: "2026-09-14"
 status: "JOD perspective forthcoming · Empirical studies ongoing"
 researchArea: "interaction"

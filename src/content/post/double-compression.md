@@ -1,6 +1,6 @@
 ---
-title: "AI and Collective Outcomes"
-description: "How does AI shape the ideas and judgments that groups produce? This stream examines diversity in scientific proposals and reviews, alongside whose perspectives influence computational decisions."
+title: "How AI affects organizational decisions"
+description: "I ask how AI might change the possibilities that organizations and funding institutions are able to recognize, evaluate, and ultimately support."
 publishDate: "2026-09-14"
 status: "Working manuscript and published research"
 researchArea: "collective-outcomes"
