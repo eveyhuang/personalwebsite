@@ -22,7 +22,7 @@ Evey Huang, Daniel Rees Lewis, Shubhanshi Gaudani, Matthew Easterday, and Elizab
 
 ## AI that helps us help each other
 
-**CSCW 2025 · System design and exploratory deployment.** Building on this model of coaching expertise, I designed a proactive AI system that helps entrepreneurs surface assumptions and neglected risks before meetings. Mentors receive project context and suggested coaching strategies, and can revise the expert model guiding the AI’s questions.
+**CSCW 2025 · System design and deployment.** Building on this model of coaching expertise, I designed a proactive AI system that helps entrepreneurs surface assumptions and neglected risks before meetings. Mentors receive project context and suggested coaching strategies, and can revise the expert model guiding the AI’s questions.
 
 After iterative prototyping, we deployed the system with one mentor and 11 novices, each preparing for one real coaching meeting. Novices reported identifying overlooked risks and reconsidering their priorities; participants described subsequent conversations as more focused, intentional, and in-depth. Incomplete context sometimes required additional verification. The contribution is situated evidence about preparing people to collaborate, with long-term effects on learning still to be studied.
 
