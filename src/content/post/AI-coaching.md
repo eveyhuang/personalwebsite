@@ -1,6 +1,6 @@
 ---
-title: "Making Expertise Usable with AI"
-description: "How can AI help people articulate tacit reasoning and make expertise available to one another? This stream connects studies of coaching, a proactive AI system, workplace learning, and early work on human judgment."
+title: "How AI expands human development in organizations"
+description: "How could organizations use AI guided by models of human expertise to extend the reach of coaching and strengthen how people learn from one another."
 publishDate: "2026-09-14"
 status: "Published research · CHI and CSCW"
 researchArea: "expertise"
