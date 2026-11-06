@@ -2,7 +2,7 @@
 import PageLayout from "@/layouts/Base";
 import SocialList from "@/components/SocialList";
 import { Image } from "astro:assets";
-import { RESEARCH_AREAS } from "@/data/research";
+import { getCollection } from "astro:content";
 import profileImg from "../assets/evey-profile.png";
 
 const newsItems = [
@@ -53,14 +53,20 @@ const newsItems = [
 	},
 ];
 
-const projects = RESEARCH_AREAS.map((area) => ({
-	...area,
-	href: `/posts/${area.featuredSlug}`,
-}));
+// Keep homepage cards in sync with the metadata on each featured project page.
+const featuredPosts = await getCollection("post", ({ data }) => data.featured && !data.draft);
+const projects = featuredPosts
+	.sort((a, b) => a.data.order - b.data.order)
+	.map((post) => ({
+		title: post.data.title,
+		description: post.data.description,
+		image: post.data.coverImage,
+		href: `/posts/${post.slug}/`,
+	}));
 ---
 
 <PageLayout meta={{ title: "Home", description: "How AI changes collective work: research on distributed expertise, team interaction, and the diversity of ideas and judgments." }}>
-	<section class="grid gap-10 lg:grid-cols-[1.35fr_1fr]">
+	<section class="hero-grid grid gap-10 lg:grid-cols-[1.35fr_1fr]">
 		<div>
 			<h1 class="display-title">hi.</h1>
 			<p class="mt-8 serif-note">
@@ -72,13 +78,15 @@ const projects = RESEARCH_AREAS.map((area) => ({
 		</div>
 		<div class="hero-frame">
 			<div class="hero-frame-content">
+				<div class="hero-portrait-frame">
 				<Image
 					src={profileImg}
 					width={340}
 					alt="Portrait of Evey Huang"
 					class="hero-portrait"
 				/>
-				<p class="meta-text">HCI & Design | Computational Social Science | Organizations & Work </p>
+				</div>
+				<p class="meta-text">HCI & Design · Computational Social Science · Organizations & Work </p>
 				<p class="mt-2 text-3xl font-medium tracking-tight hero-name">Evey Huang, PhD.</p>
 			</div>
 		</div>
@@ -106,7 +114,7 @@ const projects = RESEARCH_AREAS.map((area) => ({
 				projects.map((project) => (
 					<a class="project-card" href={project.href} aria-label={`Explore ${project.title.toLowerCase()}`}>
 						<div class="project-art">
-							<img class="project-image" src={project.image} alt="" />
+							{project.image && <img class="project-image" src={project.image} alt="" />}
 							
 							<h3 class="project-title">{project.title}</h3>
 						</div>
@@ -169,11 +177,16 @@ const projects = RESEARCH_AREAS.map((area) => ({
 </PageLayout>
 
 <style>
+	.hero-grid > * {
+		min-width: 0;
+	}
+
 	.hero-frame {
 		position: relative;
 		display: grid;
 		place-items: end;
 		min-height: 340px;
+		padding-left: calc(10% + 1.5rem);
 	}
 
 	.hero-frame::before {
@@ -186,30 +199,38 @@ const projects = RESEARCH_AREAS.map((area) => ({
 		background: var(--theme-line-strong);
 	}
 
-	.hero-frame::after {
+	.hero-portrait-frame::after {
 		content: "";
 		position: absolute;
 		right: 0;
-		bottom: 36%;
-		width: 82%;
+		bottom: 2rem;
+		width: 100%;
 		height: 1px;
 		background: var(--theme-line-strong);
 	}
 
 	.hero-frame-content {
 		position: relative;
-		padding-left: 1.25rem;
+		width: 100%;
+		max-width: 22rem;
 		margin-bottom: 1.2rem;
 	}
 
+	.hero-portrait-frame {
+		position: relative;
+		margin-bottom: 1.1rem;
+	}
+
+	.hero-frame-content .meta-text {
+		text-wrap: balance;
+	}
+
 	.hero-portrait {
-		width: clamp(160px, 22vw, 280px);
+		width: min(100%, clamp(160px, 22vw, 280px));
 		aspect-ratio: 1 / 1;
 		object-fit: cover;
 		border-radius: 9999px;
 		border: 1px solid var(--theme-line);
-		margin-left: -2.6rem;
-		margin-bottom: 1.1rem;
 		position: relative;
 		z-index: 2;
 		background: #f5f5f3;
@@ -287,6 +308,7 @@ const projects = RESEARCH_AREAS.map((area) => ({
 	@media (max-width: 1023px) {
 		.hero-frame {
 			min-height: 230px;
+			padding-left: 1.25rem;
 		}
 
 		.hero-frame::before {
@@ -294,8 +316,7 @@ const projects = RESEARCH_AREAS.map((area) => ({
 		}
 
 		.hero-portrait {
-			margin-left: 0;
-			width: clamp(170px, 34vw, 260px);
+			width: min(100%, clamp(170px, 34vw, 260px));
 		}
 
 		.projects-grid {
